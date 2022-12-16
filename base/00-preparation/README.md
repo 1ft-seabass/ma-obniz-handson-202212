@@ -2,6 +2,8 @@
 
 ## 持ち物
 
+![cc9e7a2a227a0f14cd2dd02c5cf63d50](https://i.gyazo.com/cc9e7a2a227a0f14cd2dd02c5cf63d50.jpg)
+
 - ハンズオンを受講するノート PC
 - オンラインハンズオンなので受講するビデオソフトウェア
 - 手元に届いた obniz スターターキット
