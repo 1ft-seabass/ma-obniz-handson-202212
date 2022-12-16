@@ -1,0 +1,865 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# article: https://ogp.me/ns/article#"></head>
+        <meta property="og:type" content="article">
+        <meta property="og:url" content="00-preparation/02-airtable.html">
+        <meta property="og:image" content="https://i.gyazo.com/7e2595fc53dfcc26d2eb00ba30726d63.png">
+        <meta property="og:title" content="[202212 obniz ハンズオン資料] Airtable 準備">
+        <meta property="og:description" content="2022/12 に行われる obniz ハンズオン資料です">
+        <meta property="og:locale" content="ja">
+        <title>[202212 obniz ハンズオン資料] Airtable 準備</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="2022/12 に行われる obniz ハンズオン資料です">
+        <meta name="generator" content="HonKit 3.7.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-intopic-toc/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../01-introduction.html" />
+    
+    
+    <link rel="prev" href="01-line-notify.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索ワードを入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    事前準備
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="00-obniz.html">
+            
+                <a href="00-obniz.html">
+            
+                    
+                    obniz 準備
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="01-line-notify.html">
+            
+                <a href="01-line-notify.html">
+            
+                    
+                    LINE Notify 準備
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.3" data-path="02-airtable.html">
+            
+                <a href="02-airtable.html">
+            
+                    
+                    Airtable 準備
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../01-introduction.html">
+            
+                <a href="../01-introduction.html">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    obniz をうごかそう
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    起動
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    ディスプレイ
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" >
+            
+                <span>
+            
+                    
+                    スイッチ
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    スターターキットを動かそう
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" >
+            
+                <span>
+            
+                    
+                    obniz クラウドをつかおう
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" >
+            
+                <span>
+            
+                    
+                    LED 信号を操作しよう
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2" >
+            
+                <span>
+            
+                    
+                    サーボモーターを操作しよう
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3" >
+            
+                <span>
+            
+                    
+                    距離センサーの距離を表示しよう
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" >
+            
+                <span>
+            
+                    
+                    LINE Notify で通知しよう
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" >
+            
+                <span>
+            
+                    
+                    温度センサーを LINE Notify に通知しよう
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" >
+            
+                <span>
+            
+                    
+                    人感センサーを LINE Notify に通知しよう
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.3" >
+            
+                <span>
+            
+                    
+                    距離センサーを LINE Notify に通知しよう
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" >
+            
+                <span>
+            
+                    
+                    ほかのパーツも動かそう
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" >
+            
+                <span>
+            
+                    
+                    ブザー
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.2" >
+            
+                <span>
+            
+                    
+                    ボタン
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.3" >
+            
+                <span>
+            
+                    
+                    LED マトリックス
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Airtable にデータを保存しよう
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" >
+            
+                <span>
+            
+                    
+                    Airtable の準備
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" >
+            
+                <span>
+            
+                    
+                    obniz クラウドでコードを動かしてみる
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" >
+            
+                <span>
+            
+                    
+                    人感センサーのデータを送ってみよう
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    MESH と連携しよう
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <span>
+            
+                    
+                    いくつかのデモとコード紹介
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" >
+            
+                <span>
+            
+                    
+                    実装時のポイント紹介
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    いろいろ TIPS
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    質疑応答＆ディスカッション
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    おわりに
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            HonKitで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Airtable 準備</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="airtable-アカウント準備と-api-key-準備"><a name="airtable-アカウント準備と-api-key-準備" class="plugin-anchor" href="#airtable-アカウント準備と-api-key-準備"><i class="fa fa-link" aria-hidden="true"></i></a>Airtable アカウント準備と API Key 準備</h1>
+<h2 id="airtable-というクラウド型データベース"><a name="airtable-というクラウド型データベース" class="plugin-anchor" href="#airtable-というクラウド型データベース"><i class="fa fa-link" aria-hidden="true"></i></a>Airtable というクラウド型データベース</h2>
+<p>Airtable <a href="https://www.airtable.com/" target="_blank">https://www.airtable.com/</a> というクラウド型データベースを触ってみます。</p>
+<p><img src="https://i.gyazo.com/e5f34a332182a4e0a07abedd1354df68.png" alt="e5f34a332182a4e0a07abedd1354df68"></p>
+<p>Google スプレッドシートのような見た目で Web から GUI でデータを作成・更新・削除・検索できます。また、API も充実していて使いやすくデータを操作することができます。</p>
+<p><img src="https://i.gyazo.com/3774deda3b412fb22b9e50b95d2e4a88.png" alt="3774deda3b412fb22b9e50b95d2e4a88"></p>
+<p>2022 年 10 月現在 Pricing <a href="https://airtable.com/pricing" target="_blank">https://airtable.com/pricing</a> を見てみると</p>
+<ul>
+<li>無制限の Base</li>
+<li>Base あたり1,200レコード</li>
+<li>Base あたり2GBの添付ファイル</li>
+<li>グリッド、カレンダー、かんばん、フォーム、およびギャラリービュー</li>
+</ul>
+<p>が無料枠で含まれるので、とりあえず触ってみても基本的な機能を体験しやすいものになっています。</p>
+<h2 id="アカウント作成"><a name="アカウント作成" class="plugin-anchor" href="#アカウント作成"><i class="fa fa-link" aria-hidden="true"></i></a>アカウント作成</h2>
+<p>サインアップ <a href="https://airtable.com/signup" target="_blank">https://airtable.com/signup</a> からアカウントを作成します。</p>
+<p><img src="https://i.gyazo.com/5935819c6b0614e99bf49787f06f9a98.png" alt="5935819c6b0614e99bf49787f06f9a98"></p>
+<p>Work email にメールアドレスを入力しましょう。</p>
+<p><img width="700" alt="image.png (53.7 kB)" src="https://img.esa.io/uploads/production/attachments/3062/2022/09/05/8131/a695052f-b31c-44ff-8ef7-75c746d9da00.png"></p>
+<p>Full name と Password を入力します。メールアドレスとパスワードはメモして控えておきましょう。</p>
+<p>Continue ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/7138ec5e9815e03d80a810121dff8d83.png" alt="7138ec5e9815e03d80a810121dff8d83"></p>
+<p>どんなカテゴリにいるか聞かれるので、選択します。アンケート的なものです。</p>
+<p><img src="https://i.gyazo.com/c315736186693f7fdee818d4c3270134.png" alt="c315736186693f7fdee818d4c3270134"></p>
+<p>ほかの人の招待は Skip します。</p>
+<p><img src="https://i.gyazo.com/3b1c04dbb6c8d0c52673a1623397f61e.png" alt="3b1c04dbb6c8d0c52673a1623397f61e"></p>
+<p>なにかテスト的にはじめるデータを聞かれますが、今回は Skip で。</p>
+<p><img src="https://i.gyazo.com/d8ba36820f279c106c16c394346e8cf7.png" alt="d8ba36820f279c106c16c394346e8cf7"></p>
+<p>Go to workspace をクリックします。</p>
+<p><img src="https://i.gyazo.com/5368bbecb3e4e92ca5edc8d5514d1b9a.png" alt="5368bbecb3e4e92ca5edc8d5514d1b9a"></p>
+<p>Workspace に移動しました。</p>
+<h3 id="verify-my-email-もチェックしておきましょう"><a name="verify-my-email-もチェックしておきましょう" class="plugin-anchor" href="#verify-my-email-もチェックしておきましょう"><i class="fa fa-link" aria-hidden="true"></i></a>Verify my email もチェックしておきましょう</h3>
+<p><img src="https://i.gyazo.com/91b0725105e7b8d07e273c765b0a5f08.png" alt="91b0725105e7b8d07e273c765b0a5f08"></p>
+<p>登録したメールアドレスに確認メール（Verify my email）が届くので Verify my email ボタンをクリックして、確認完了しておきましょう。</p>
+<p><img src="https://i.gyazo.com/bd9ab490b7d8f3bd523ee1dc17d0ed80.png" alt="bd9ab490b7d8f3bd523ee1dc17d0ed80"></p>
+<p>Workspace に移動して Your email has been verified! と表示されたら対応 OK です。</p>
+<h2 id="データのかたまり-base-を準備する"><a name="データのかたまり-base-を準備する" class="plugin-anchor" href="#データのかたまり-base-を準備する"><i class="fa fa-link" aria-hidden="true"></i></a>データのかたまり Base を準備する</h2>
+<p>AirTable ではスプレッドシートのようなデータのかたまりを Base と呼びます。</p>
+<p>英語ですが、こちらの記事 Creating a new empty base <a href="https://support.airtable.com/docs/creating-a-new-empty-base" target="_blank">https://support.airtable.com/docs/creating-a-new-empty-base</a> も参考になります。</p>
+<p><img src="https://i.gyazo.com/cc65d34c9785489fa5c239ae5f421af1.png" alt="cc65d34c9785489fa5c239ae5f421af1"></p>
+<p>Create a base ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/c414c9006ccb306beb2bc646348f2068.png" alt="c414c9006ccb306beb2bc646348f2068"></p>
+<p>さっそく Base が Untitleed Base として出来上がります。カラーはランダムです。</p>
+<h3 id="すでにデータの入れ物（フィールド）は仮で用意されている"><a name="すでにデータの入れ物（フィールド）は仮で用意されている" class="plugin-anchor" href="#すでにデータの入れ物（フィールド）は仮で用意されている"><i class="fa fa-link" aria-hidden="true"></i></a>すでにデータの入れ物（フィールド）は仮で用意されている</h3>
+<p><img src="https://i.gyazo.com/8960a417a03773a65fd2a541dfd057ef.png" alt="8960a417a03773a65fd2a541dfd057ef"></p>
+<p>Airtable は最初にとりあえず使えるデータの入れ物（フィールド）は用意されています。</p>
+<ul>
+<li>フィールド名 Name<ul>
+<li>フィールドタイプ Single text line（単一行）</li>
+</ul>
+</li>
+<li>フィールド名 Notes<ul>
+<li>フィールドタイプ Long text（複数行）</li>
+</ul>
+</li>
+<li>フィールド名 Assignee<ul>
+<li>フィールドタイプ User</li>
+</ul>
+</li>
+<li>フィールド名 Status<ul>
+<li>フィールドタイプ Single select（単一選択）</li>
+</ul>
+</li>
+</ul>
+<p>今回は、これをこのまま使います。</p>
+<p>データベースの機能で言うと、管理は Airtable 側がほとんど行ってくれていて、今回の Base ではデータ定義がすでに済んでいる状況です。みなさんは、データの操作に注力できます。</p>
+<h3 id="データを簡単に作る"><a name="データを簡単に作る" class="plugin-anchor" href="#データを簡単に作る"><i class="fa fa-link" aria-hidden="true"></i></a>データを簡単に作る</h3>
+<p><img src="https://i.gyazo.com/1bfd92e11bfd63316cf82eb39dff4e66.png" alt="1bfd92e11bfd63316cf82eb39dff4e66"></p>
+<p>Google スプレッドシートのような操作で、データ入力が行えます。</p>
+<p>Name フィールドの1行目には1、2行目には2、3行目には3とデータを入力して準備しておきます。</p>
+<p>Notes フィールドの1行目にはデータ A、2行目にはデータ B、3行目にはデータ Cとデータを入力して準備しておきます。</p>
+<h3 id="base-名を-sample-としておきます"><a name="base-名を-sample-としておきます" class="plugin-anchor" href="#base-名を-sample-としておきます"><i class="fa fa-link" aria-hidden="true"></i></a>Base 名を Sample としておきます</h3>
+<p><img src="https://i.gyazo.com/8e4ba83ca996e6f986b364d8d9f2fff1.png" alt="8e4ba83ca996e6f986b364d8d9f2fff1"></p>
+<p>左上の Unititled Base と表示されているところをクリックすると Base 名が変更できます。Sample としておきましょう。</p>
+<h3 id="table-名はそのまま"><a name="table-名はそのまま" class="plugin-anchor" href="#table-名はそのまま"><i class="fa fa-link" aria-hidden="true"></i></a>Table 名はそのまま</h3>
+<p><img src="https://i.gyazo.com/bac06cb663e7bfddd141665b9ce1d9dd.png" alt="bac06cb663e7bfddd141665b9ce1d9dd"></p>
+<p>左上に Table 1 というタブがありますが今回の Table 名です。このままにしておきます。</p>
+<h2 id="アカウントページで-api-key-をメモする"><a name="アカウントページで-api-key-をメモする" class="plugin-anchor" href="#アカウントページで-api-key-をメモする"><i class="fa fa-link" aria-hidden="true"></i></a>アカウントページで API Key をメモする</h2>
+<p>アカウントでログインした状態で アカウントページ <a href="https://airtable.com/account" target="_blank">https://airtable.com/account</a> に移動します。ブラウザで別タブでアクセスしましょう。</p>
+<p><img src="https://i.gyazo.com/393f9f4ff809ec417653533598577655.png" alt="393f9f4ff809ec417653533598577655"></p>
+<p>アカウントページが表示されました。</p>
+<p><img src="https://i.gyazo.com/613183bdd8f381bf1ac5fe1fd13e96e4.png" alt="613183bdd8f381bf1ac5fe1fd13e96e4"></p>
+<p>API 欄の Generate API Key ボタンをクリックします。Generate API Key は、一度だけの作業です。生成できたら、今後は生成された API Key を使います。</p>
+<p><img src="https://i.gyazo.com/7cc1f524bf2eaf614fe1abae858de1ea.png" alt="7cc1f524bf2eaf614fe1abae858de1ea"></p>
+<p>生成されました。</p>
+<p><img src="https://i.gyazo.com/fc29fbe228d071d1fb75303fbb670542.png" alt="fc29fbe228d071d1fb75303fbb670542"></p>
+<p>・・・・・で隠されたフィールドをクリックすると API Key が出てくるので、テキストエディタにメモしておきましょう。</p>
+<h2 id="これで準備完了です"><a name="これで準備完了です" class="plugin-anchor" href="#これで準備完了です"><i class="fa fa-link" aria-hidden="true"></i></a>これで準備完了です</h2>
+<p>Airtable <a href="https://www.airtable.com/" target="_blank">https://www.airtable.com/</a> でオンライン上からデータ入力や管理を行って、API Key を使って Node.js や Node-RED など他のプログラムからも API から操作できます！</p>
+<p><img src="https://i.gyazo.com/081989e0296c7c8878b161bbb9a8c3c3.png" alt="081989e0296c7c8878b161bbb9a8c3c3"></p>
+<p>こちらで準備完了です。お疲れ様でした。</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="01-line-notify.html" class="navigation navigation-prev " aria-label="Previous page: LINE Notify 準備">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../01-introduction.html" class="navigation navigation-next " aria-label="Next page: はじめに">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Airtable 準備","level":"1.2.3","depth":2,"next":{"title":"はじめに","level":"1.3","depth":1,"path":"01-introduction.md","ref":"01-introduction.md","articles":[]},"previous":{"title":"LINE Notify 準備","level":"1.2.2","depth":2,"path":"00-preparation/01-line-notify.md","ref":"00-preparation/01-line-notify.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"00-preparation/02-airtable.md","mtime":"2022-12-16T01:42:07.513Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-16T02:05:39.413Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-hide-published-with/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/gumshoe.polyfills.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-intopic-toc/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>

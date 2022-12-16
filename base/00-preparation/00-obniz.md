@@ -1,4 +1,4 @@
-# 事前準備
+# obniz アカウント＆ Wi-Fi 設定
 
 ## obniz スターターキット同梱物の確認の確認をしましょう
 
@@ -21,5 +21,7 @@
 ![e47755f8afbdb75a351e1eaf68d8c24a](https://i.gyazo.com/e47755f8afbdb75a351e1eaf68d8c24a.png)
 
 [デバイスの登録 - obniz Docs](https://obniz.com/ja/doc/reference/cloud/device-management/registration) の「ディスプレイに表示されるキーで認証する」の手順で、今回使う obniz を自分の obniz アカウントにデバイス登録します。
+
+![081989e0296c7c8878b161bbb9a8c3c3](https://i.gyazo.com/081989e0296c7c8878b161bbb9a8c3c3.png)
 
 こちらで準備完了です。お疲れ様でした。

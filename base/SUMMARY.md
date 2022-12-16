@@ -1,6 +1,35 @@
 # Summary
 
 - [Introduction](README.md)
-- [事前準備](00-preparation.md)
+- [事前準備](00-preparation/README.md)
+  - [obniz 準備](00-preparation/00-obniz.md)
+  - [LINE Notify 準備](00-preparation/01-line-notify.md)
+  - [Airtable 準備](00-preparation/02-airtable.md)
 - [はじめに](01-introduction.md)
-- （構築中...）
+- obniz をうごかそう
+  - 起動
+  - ディスプレイ
+  - スイッチ
+- スターターキットを動かそう
+  - obniz クラウドをつかおう
+    - LED 信号を操作しよう
+    - サーボモーターを操作しよう
+    - 距離センサーの距離を表示しよう
+  - LINE Notify で通知しよう
+    - 温度センサーを LINE Notify に通知しよう
+    - 人感センサーを LINE Notify に通知しよう
+    - 距離センサーを LINE Notify に通知しよう
+  - ほかのパーツも動かそう
+    - ブザー
+    - ボタン
+    - LED マトリックス
+- Airtable にデータを保存しよう
+  - Airtable の準備
+  - obniz クラウドでコードを動かしてみる
+  - 人感センサーのデータを送ってみよう
+- MESH と連携しよう
+  - いくつかのデモとコード紹介
+  - 実装時のポイント紹介
+- いろいろ TIPS
+- 質疑応答＆ディスカッション
+- おわりに
