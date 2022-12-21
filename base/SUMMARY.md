@@ -6,23 +6,22 @@
   - [LINE Notify 準備](00-preparation/01-line-notify.md)
   - [Airtable 準備](00-preparation/02-airtable.md)
 - [はじめに](01-introduction.md)
-- obniz をうごかそう
-  - 起動
-  - ディスプレイ
-  - スイッチ
+- [リファレンスから動かしてみよう](02-reference)
+- [エディタを動かしてみよう](03-editor.md)
+- [内蔵ディスプレイ](04-display.md)
+- [内蔵スイッチ](05-switch.md)
 - スターターキットを動かそう
-  - obniz クラウドをつかおう
-    - LED 信号を操作しよう
-    - サーボモーターを操作しよう
-    - 距離センサーの距離を表示しよう
-  - LINE Notify で通知しよう
-    - 温度センサーを LINE Notify に通知しよう
-    - 人感センサーを LINE Notify に通知しよう
-    - 距離センサーを LINE Notify に通知しよう
-  - ほかのパーツも動かそう
-    - ブザー
-    - ボタン
-    - LED マトリックス
+  - [LED 信号を光らせよう](06-01-led.md)
+  - [サーボモーターを動かそう](06-02-servo.md)
+  - [超音波距離センサーの距離を表示しよう](06-03-ultra-sonic.md)
+- LINE Notify で通知しよう
+  - 温度センサーを LINE Notify に通知しよう
+  - 人感センサーを LINE Notify に通知しよう
+  - 距離センサーを LINE Notify に通知しよう
+- ほかのパーツも動かそう
+  - ブザー
+  - ボタン
+  - LED マトリックス
 - Airtable にデータを保存しよう
   - Airtable の準備
   - obniz クラウドでコードを動かしてみる
