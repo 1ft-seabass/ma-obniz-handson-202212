@@ -5,12 +5,12 @@
         <meta charset="UTF-8">
         <head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# article: https://ogp.me/ns/article#"></head>
         <meta property="og:type" content="article">
-        <meta property="og:url" content="00-preparation/00-obniz.html">
+        <meta property="og:url" content="00-preparation/03-01-ifttt.html">
         <meta property="og:image" content="https://i.gyazo.com/7e2595fc53dfcc26d2eb00ba30726d63.png">
-        <meta property="og:title" content="[202212 obniz ハンズオン資料] obniz 準備">
+        <meta property="og:title" content="[202212 obniz ハンズオン資料] IFTTT 準備">
         <meta property="og:description" content="2022/12 に行われる obniz ハンズオン資料です">
         <meta property="og:locale" content="ja">
-        <title>[202212 obniz ハンズオン資料] obniz 準備</title>
+        <title>[202212 obniz ハンズオン資料] IFTTT 準備</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="2022/12 に行われる obniz ハンズオン資料です">
         <meta name="generator" content="HonKit 3.7.4">
@@ -75,10 +75,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="01-line-notify.html" />
+    <link rel="next" href="03-02-line-notify-applet.html" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="02-airtable.html" />
     
 
     </head>
@@ -134,7 +134,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.1" data-path="00-obniz.html">
+        <li class="chapter " data-level="1.2.1" data-path="00-obniz.html">
             
                 <a href="00-obniz.html">
             
@@ -173,7 +173,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.4" data-path="03-01-ifttt.html">
+        <li class="chapter active" data-level="1.2.4" data-path="03-01-ifttt.html">
             
                 <a href="03-01-ifttt.html">
             
@@ -641,7 +641,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >obniz 準備</a>
+        <a href=".." >IFTTT 準備</a>
     </h1>
 </div>
 
@@ -656,20 +656,82 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="obniz-アカウント＆-wi-fi-設定"><a name="obniz-アカウント＆-wi-fi-設定" class="plugin-anchor" href="#obniz-アカウント＆-wi-fi-設定"><i class="fa fa-link" aria-hidden="true"></i></a>obniz アカウント＆ Wi-Fi 設定</h1>
-<h2 id="obniz-スターターキット同梱物の確認の確認をしましょう"><a name="obniz-スターターキット同梱物の確認の確認をしましょう" class="plugin-anchor" href="#obniz-スターターキット同梱物の確認の確認をしましょう"><i class="fa fa-link" aria-hidden="true"></i></a>obniz スターターキット同梱物の確認の確認をしましょう</h2>
-<p><a href="https://obniz.com/ja/doc/guides/obniz-starter-kit/about" target="_blank">キットについて - obniz Docs</a> こちらの記事をもとにobniz スターターキット同梱物の確認をしましょう。</p>
-<h2 id="obniz-アカウントを作成しましょう"><a name="obniz-アカウントを作成しましょう" class="plugin-anchor" href="#obniz-アカウントを作成しましょう"><i class="fa fa-link" aria-hidden="true"></i></a>obniz アカウントを作成しましょう</h2>
-<p><img src="https://i.gyazo.com/4b26e530e4af6e09ef82f86322986e62.png" width="300"></p>
-<p>サインアップ <a href="https://obniz.com/ja/users/signup" target="_blank">https://obniz.com/ja/users/signup</a> から、メールアドレスとパスワードを設定してアカウントを作成しましょう。</p>
-<h2 id="起動とwi-fi設定をしましょう"><a name="起動とwi-fi設定をしましょう" class="plugin-anchor" href="#起動とwi-fi設定をしましょう"><i class="fa fa-link" aria-hidden="true"></i></a>起動とWi-Fi設定をしましょう</h2>
-<p><img src="https://i.gyazo.com/e81ef332b0852339d158017d06da40a2.png" alt="e81ef332b0852339d158017d06da40a2"></p>
-<p><a href="https://obniz.com/ja/doc/reference/board-1y/quick-start/" target="_blank">起動とWi-Fi設定 - obniz Docs</a> を元に起動して Wi-Fi 設定を行います。</p>
-<h2 id="デバイスの登録をしましょう"><a name="デバイスの登録をしましょう" class="plugin-anchor" href="#デバイスの登録をしましょう"><i class="fa fa-link" aria-hidden="true"></i></a>デバイスの登録をしましょう</h2>
-<p><img src="https://i.gyazo.com/e47755f8afbdb75a351e1eaf68d8c24a.png" alt="e47755f8afbdb75a351e1eaf68d8c24a"></p>
-<p><a href="https://obniz.com/ja/doc/reference/cloud/device-management/registration" target="_blank">デバイスの登録 - obniz Docs</a> の「ディスプレイに表示されるキーで認証する」の手順で、今回使う obniz を自分の obniz アカウントにデバイス登録します。</p>
-<p><img src="https://i.gyazo.com/081989e0296c7c8878b161bbb9a8c3c3.png" alt="081989e0296c7c8878b161bbb9a8c3c3"></p>
-<p>こちらで準備完了です。お疲れ様でした。</p>
+                                <h1 id="ifttt-準備"><a name="ifttt-準備" class="plugin-anchor" href="#ifttt-準備"><i class="fa fa-link" aria-hidden="true"></i></a>IFTTT 準備</h1>
+<h2 id="ifttt-とは"><a name="ifttt-とは" class="plugin-anchor" href="#ifttt-とは"><i class="fa fa-link" aria-hidden="true"></i></a>IFTTT とは</h2>
+<p><img src="https://i.gyazo.com/d8a987c6fc09b42bb8ba8f83a6ad8c26.png" alt="d8a987c6fc09b42bb8ba8f83a6ad8c26"></p>
+<blockquote>
+<p>What is IFTTT?
+IFTTT is short for If This Then That, and is the best way to integrate apps, devices, and services. We help devices, services, and apps work together in new and powerful ways.</p>
+<p>IFTTT was founded on the belief that every thing works better together. Tech incompatibility has become challenging for anyone trying to build a smart home or create automatic routines in their life. IFTTT makes it easy.</p>
+<p>IFTTTとは？
+IFTTT は If This Then That の略で、アプリ、デバイス、およびサービスを統合するための最良の方法です。私たちは、デバイス、サービス、アプリが新しく強力な方法で連携できるように支援します。</p>
+<p>IFTTT は、あらゆるものが一緒により良く機能するという信念に基づいて設立されました。スマート ホームを構築したり、生活の中で自動ルーチンを作成したりしようとしている人にとって、テクノロジーの非互換性は困難になっています。 IFTTTを使えば簡単です。</p>
+</blockquote>
+<h2 id="アカウント作成"><a name="アカウント作成" class="plugin-anchor" href="#アカウント作成"><i class="fa fa-link" aria-hidden="true"></i></a>アカウント作成</h2>
+<p><img src="https://i.gyazo.com/04b48a54893926c165c3c16e7f4c0691.png" alt="04b48a54893926c165c3c16e7f4c0691"></p>
+<p><a href="https://ifttt.com/" target="_blank">https://ifttt.com/</a> にアクセスして右上の Get Started ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/3d3974e5792697f7670242d39839db66.png" alt="3d3974e5792697f7670242d39839db66"></p>
+<p>Get started with IFTTT のページに移動します。Or use your email to sign up or log in のところの sign up をクリックします。</p>
+<p><img src="https://i.gyazo.com/50f3f91a3fbd9f6d13017da501587098.png" alt="50f3f91a3fbd9f6d13017da501587098"></p>
+<p>メールアドレスでのサインアップページです。</p>
+<p><img src="https://i.gyazo.com/f96f81bb06683c1bb5f4cbb86c084757.png" alt="f96f81bb06683c1bb5f4cbb86c084757"></p>
+<p>メールアドレスとパスワードを決めて Get started ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/91a429a74ea68d362f105b9f417a5f3f.png" alt="91a429a74ea68d362f105b9f417a5f3f"></p>
+<p>Neither  を選択して Continue ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/27defc0973e837909d23c61a37b303fc.png" alt="27defc0973e837909d23c61a37b303fc"></p>
+<p>Date &amp; Time をクリックして Continue ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/cb06bf7aa9c7f0baf059df6b0b16909d.png" alt="cb06bf7aa9c7f0baf059df6b0b16909d"></p>
+<p>Not now をクリックします。</p>
+<p><img src="https://i.gyazo.com/c7a44b1df2f3ba92f1a510a2dec45f9d.png" alt="c7a44b1df2f3ba92f1a510a2dec45f9d"></p>
+<p>Get started をクリックします。</p>
+<p><img src="https://i.gyazo.com/2ce3e0e65c0ad0575a9dd3a2e9667551.png" alt="2ce3e0e65c0ad0575a9dd3a2e9667551"></p>
+<p>Explore のページに移動したら、あとは、メール認証だけです。今回登録したメールアドレスのメールボックスを見に行きましょう。</p>
+<p><img src="https://i.gyazo.com/6cabffc6624616525693d3a804ecbf03.png" alt="6cabffc6624616525693d3a804ecbf03"></p>
+<p>このように今回登録したメールアドレスのメールボックスにメールが来るはずなので Confirm your email ボタンをクリックします。もしも、数分経って見当たらない場合は、迷惑メールに振り分けられている場合もあるので、確認してみましょう。</p>
+<p><img src="https://i.gyazo.com/8cce51ca468d07f0ca2d08163d14cbeb.png" alt="8cce51ca468d07f0ca2d08163d14cbeb"></p>
+<p>Explore のページがブラウザで開いて認証完了です。</p>
+<p><img src="https://i.gyazo.com/7e63d8a01102bbae124a28eefb92048d.png" alt="7e63d8a01102bbae124a28eefb92048d"></p>
+<p>また、もう少し待っていると Welcome to IFTTT のメールも来ます。これで、よりアカウント登録が完了したことが分かります！</p>
+<h2 id="webhook-integrations-の有効化"><a name="webhook-integrations-の有効化" class="plugin-anchor" href="#webhook-integrations-の有効化"><i class="fa fa-link" aria-hidden="true"></i></a>Webhook integrations の有効化</h2>
+<p><img src="https://i.gyazo.com/8e502783f7a97b0b6e5977a943f7e7d5.png" alt="8e502783f7a97b0b6e5977a943f7e7d5"></p>
+<p><a href="https://ifttt.com/explore" target="_blank">https://ifttt.com/explore</a> で、サービス検索をします。</p>
+<p><img src="https://i.gyazo.com/91daaa6006cab39287068832f76ae8f3.png" alt="91daaa6006cab39287068832f76ae8f3"></p>
+<p>Webhook で検索して Webhooks をクリックします。</p>
+<p><img src="https://i.gyazo.com/ca57144010dd0ad73fa58a0185c7399c.png" alt="ca57144010dd0ad73fa58a0185c7399c"></p>
+<p>Webhooks integrations の詳細が表示されます。Connect ボタンをクリックしましょう。</p>
+<p><img src="https://i.gyazo.com/02cf5072b534ed5b997341f52921af87.png" alt="02cf5072b534ed5b997341f52921af87"></p>
+<p>無事 Connect できると、このように Create ボタンを Documentation ボタンが表示されます。</p>
+<h2 id="webhook-integrations-キーのメモ"><a name="webhook-integrations-キーのメモ" class="plugin-anchor" href="#webhook-integrations-キーのメモ"><i class="fa fa-link" aria-hidden="true"></i></a>Webhook integrations キーのメモ</h2>
+<p><img src="https://i.gyazo.com/02cf5072b534ed5b997341f52921af87.png" alt="02cf5072b534ed5b997341f52921af87"></p>
+<p>Documentation ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/dac67d3ad447bc2b43c97b861bfa3f57.png" alt="dac67d3ad447bc2b43c97b861bfa3f57"></p>
+<p>Your key is のページが表示されるので、Your key is の下部の赤矢印のキーを最初から最後までコピーします。コピー漏れに気をつけましょう。</p>
+<p>これは当日使います。テキストエディタでメモして保存しておきましょう。</p>
+<h2 id="line-integrations-の有効化"><a name="line-integrations-の有効化" class="plugin-anchor" href="#line-integrations-の有効化"><i class="fa fa-link" aria-hidden="true"></i></a>LINE integrations の有効化</h2>
+<p>LINE Notify の設定を済ませてから有効化しましょう。</p>
+<p><img src="https://i.gyazo.com/8e502783f7a97b0b6e5977a943f7e7d5.png" alt="8e502783f7a97b0b6e5977a943f7e7d5"></p>
+<p><a href="https://ifttt.com/explore" target="_blank">https://ifttt.com/explore</a> で、サービス検索をします。</p>
+<p><img src="https://i.gyazo.com/cdf7895eff7aa55bcb166aadd268ad80.png" alt="cdf7895eff7aa55bcb166aadd268ad80"></p>
+<p>LINE で検索して LINE をクリックします。</p>
+<p><img src="https://i.gyazo.com/47e69917edfc1527f1f3b2b5760ee29a.png" alt="47e69917edfc1527f1f3b2b5760ee29a"></p>
+<p><a href="https://ifttt.com/line" target="_blank">https://ifttt.com/line</a> の LINE サービスを関連付けるページです。Connect ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/6dcc86ca9bdfa588ef228bfe37de804a.png" alt="6dcc86ca9bdfa588ef228bfe37de804a"></p>
+<p>QR コードでログインします。</p>
+<p><img src="https://i.gyazo.com/2dadc692ebf32354324423bf3770b39a.png" alt="2dadc692ebf32354324423bf3770b39a"></p>
+<p>同意して連携するボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/aa805b48325d98e38b047280509b9f97.png" alt="aa805b48325d98e38b047280509b9f97"></p>
+<p>接続されると Create ボタンと Download ボタンがある、このような画面になり LINE integrations の設定が完了です。</p>
+<h2 id="airtable-integrations-の有効化"><a name="airtable-integrations-の有効化" class="plugin-anchor" href="#airtable-integrations-の有効化"><i class="fa fa-link" aria-hidden="true"></i></a>Airtable integrations の有効化</h2>
+<p><img src="https://i.gyazo.com/8e502783f7a97b0b6e5977a943f7e7d5.png" alt="8e502783f7a97b0b6e5977a943f7e7d5"></p>
+<p><a href="https://ifttt.com/explore" target="_blank">https://ifttt.com/explore</a> で、サービス検索をします。</p>
+<p><img src="https://i.gyazo.com/7d978aeb192e5ae06ffe551de9ceee30.png" alt="7d978aeb192e5ae06ffe551de9ceee30"></p>
+<p>Airtable で検索して Airtable をクリックします。</p>
+<p><img src="https://i.gyazo.com/4d745cde667fb89f9251df67618d5cc6.png" alt="4d745cde667fb89f9251df67618d5cc6"></p>
+<p>Webhooks integrations の詳細が表示されます。Connect ボタンをクリックしましょう。</p>
+<p><img src="https://i.gyazo.com/bad42826c94a6201df96798e826fa99d.png" alt="bad42826c94a6201df96798e826fa99d"></p>
+<p>Airtable 側のログイン画面が表示されます。Airtable アカウントとパスワードを入力してログインします。なお、Airtable に既にログインしている場合は、自動的に接続されるようです。</p>
+<p><img src="https://i.gyazo.com/42929fc536d14abf772c62e3a99ef74b.png" alt="42929fc536d14abf772c62e3a99ef74b"></p>
+<p>接続されると Create ボタンと Download ボタンがある、このような画面になり Airtable integrations の設定が完了です。</p>
 
                                 
                                 </section>
@@ -697,12 +759,12 @@
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 事前準備">
+                <a href="02-airtable.html" class="navigation navigation-prev " aria-label="Previous page: Airtable 準備">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="01-line-notify.html" class="navigation navigation-next " aria-label="Next page: LINE Notify 準備">
+                <a href="03-02-line-notify-applet.html" class="navigation navigation-next " aria-label="Next page: IFTTT LINE Notify Applet 準備">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -713,7 +775,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"obniz 準備","level":"1.2.1","depth":2,"next":{"title":"LINE Notify 準備","level":"1.2.2","depth":2,"path":"00-preparation/01-line-notify.md","ref":"00-preparation/01-line-notify.md","articles":[]},"previous":{"title":"事前準備","level":"1.2","depth":1,"path":"00-preparation/README.md","ref":"00-preparation/README.md","articles":[{"title":"obniz 準備","level":"1.2.1","depth":2,"path":"00-preparation/00-obniz.md","ref":"00-preparation/00-obniz.md","articles":[]},{"title":"LINE Notify 準備","level":"1.2.2","depth":2,"path":"00-preparation/01-line-notify.md","ref":"00-preparation/01-line-notify.md","articles":[]},{"title":"Airtable 準備","level":"1.2.3","depth":2,"path":"00-preparation/02-airtable.md","ref":"00-preparation/02-airtable.md","articles":[]},{"title":"IFTTT 準備","level":"1.2.4","depth":2,"path":"00-preparation/03-01-ifttt.md","ref":"00-preparation/03-01-ifttt.md","articles":[]},{"title":"IFTTT LINE Notify Applet 準備","level":"1.2.5","depth":2,"path":"00-preparation/03-02-line-notify-applet.md","ref":"00-preparation/03-02-line-notify-applet.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"00-preparation/00-obniz.md","mtime":"2022-12-16T01:26:41.502Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-22T08:04:15.000Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"IFTTT 準備","level":"1.2.4","depth":2,"next":{"title":"IFTTT LINE Notify Applet 準備","level":"1.2.5","depth":2,"path":"00-preparation/03-02-line-notify-applet.md","ref":"00-preparation/03-02-line-notify-applet.md","articles":[]},"previous":{"title":"Airtable 準備","level":"1.2.3","depth":2,"path":"00-preparation/02-airtable.md","ref":"00-preparation/02-airtable.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"00-preparation/03-01-ifttt.md","mtime":"2022-12-22T08:00:11.681Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-22T08:04:15.000Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

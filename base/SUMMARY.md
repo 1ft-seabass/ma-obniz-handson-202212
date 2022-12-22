@@ -5,6 +5,8 @@
   - [obniz 準備](00-preparation/00-obniz.md)
   - [LINE Notify 準備](00-preparation/01-line-notify.md)
   - [Airtable 準備](00-preparation/02-airtable.md)
+  - [IFTTT 準備](00-preparation/03-01-ifttt.md)
+  - [IFTTT LINE Notify Applet 準備](00-preparation/03-02-line-notify-applet.md)
 - [はじめに](01-introduction.md)
 - [リファレンスから動かしてみよう](02-reference)
 - [エディタを動かしてみよう](03-editor.md)
@@ -15,9 +17,11 @@
   - [サーボモーターを動かそう](06-02-servo.md)
   - [超音波距離センサーの距離を表示しよう](06-03-ultra-sonic.md)
 - LINE Notify で通知しよう
+  - [LINE Notify とは](07-01-line-notify.md)
+  - [内蔵スイッチを LINE Notify に通知しよう](07-02-line-notify-and-switch.md)
+  - [人感センサーを LINE Notify に通知しよう](07-03-line-notify-and-pir-sensor.md)
+  - [距離センサーを LINE Notify に通知しよう](07-04-line-notify-ultra-sonic.md)
   - 温度センサーを LINE Notify に通知しよう
-  - 人感センサーを LINE Notify に通知しよう
-  - 距離センサーを LINE Notify に通知しよう
 - ほかのパーツも動かそう
   - ブザー
   - ボタン
