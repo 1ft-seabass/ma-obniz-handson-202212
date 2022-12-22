@@ -27,3 +27,10 @@
 ![e5f34a332182a4e0a07abedd1354df68](https://i.gyazo.com/e5f34a332182a4e0a07abedd1354df68.png)
 
 → [Airtable アカウント準備と API Key 準備](02-airtable.md)
+
+## IFTTT アカウント準備と IFTTT LINE Notify Applet 準備
+
+![04b48a54893926c165c3c16e7f4c0691](https://i.gyazo.com/04b48a54893926c165c3c16e7f4c0691.png)
+
+→ [IFTTT アカウント準備](03-01-ifttt.md)
+→ [IFTTT LINE Notify Applet 準備](03-02-line-notify-applet.md)

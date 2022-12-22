@@ -4,15 +4,14 @@
 
 ![d8a987c6fc09b42bb8ba8f83a6ad8c26](https://i.gyazo.com/d8a987c6fc09b42bb8ba8f83a6ad8c26.png)
 
-> What is IFTTT?
-> IFTTT is short for If This Then That, and is the best way to integrate apps, devices, and services. We help devices, services, and apps work together in new and powerful ways.
-> 
-> IFTTT was founded on the belief that every thing works better together. Tech incompatibility has become challenging for anyone trying to build a smart home or create automatic routines in their life. IFTTT makes it easy.
+「if this then that」（もしこれが起こったらあれする）というシンプルなコンセプトに基づく、さまざまな API と API をつなぐ「レシピ」を作成し共有することができます。頭文字を取って IFTTT イフト と言います。
 
-> IFTTTとは？
-> IFTTT は If This Then That の略で、アプリ、デバイス、およびサービスを統合するための最良の方法です。私たちは、デバイス、サービス、アプリが新しく強力な方法で連携できるように支援します。
->
-> IFTTT は、あらゆるものが一緒により良く機能するという信念に基づいて設立されました。スマート ホームを構築したり、生活の中で自動ルーチンを作成したりしようとしている人にとって、テクノロジーの非互換性は困難になっています。 IFTTTを使えば簡単です。
+レシピの「this」の部分は「Facebookで写真をタグ付けした時」「Webhook でデータが来たとき」といった「きっかけ」になります。「that」の部分は「LINE Notify メッセージの送信」「Twitter にメッセージを作成」「Airtable にデータを保存」といった「アクション」になります。
+
+ユーザーが使用するさまざまなサービスで有効にすることで「きっかけ」と「アクション」に使うことができます。今回はアカウントを作り Webhook、LINE Notify、Airtable を有効にしましょう。
+
+- 参考文献
+    - https://ja.wikipedia.org/wiki/IFTTT
 
 ## アカウント作成
 
