@@ -5,12 +5,12 @@
         <meta charset="UTF-8">
         <head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# article: https://ogp.me/ns/article#"></head>
         <meta property="og:type" content="article">
-        <meta property="og:url" content="03-editor.html">
+        <meta property="og:url" content="09-02-pir-sensor-airtable-record.html">
         <meta property="og:image" content="https://i.gyazo.com/7e2595fc53dfcc26d2eb00ba30726d63.png">
-        <meta property="og:title" content="[202212 obniz ハンズオン資料] エディタを動かしてみよう">
+        <meta property="og:title" content="[202212 obniz ハンズオン資料] 人感センサーのデータを Airtable に送ってみよう">
         <meta property="og:description" content="2022/12 に行われる obniz ハンズオン資料です">
         <meta property="og:locale" content="ja">
-        <title>[202212 obniz ハンズオン資料] エディタを動かしてみよう</title>
+        <title>[202212 obniz ハンズオン資料] 人感センサーのデータを Airtable に送ってみよう</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="2022/12 に行われる obniz ハンズオン資料です">
         <meta name="generator" content="HonKit 3.7.4">
@@ -75,10 +75,8 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="04-display.html" />
     
-    
-    <link rel="prev" href="02-reference" />
+    <link rel="prev" href="09-01-airtable-applet.html" />
     
 
     </head>
@@ -230,7 +228,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.5" data-path="03-editor.html">
+        <li class="chapter " data-level="1.5" data-path="03-editor.html">
             
                 <a href="03-editor.html">
             
@@ -438,7 +436,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.2" data-path="09-02-pir-sensor-airtable-record.html">
+        <li class="chapter active" data-level="1.11.2" data-path="09-02-pir-sensor-airtable-record.html">
             
                 <a href="09-02-pir-sensor-airtable-record.html">
             
@@ -570,7 +568,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >エディタを動かしてみよう</a>
+        <a href="." >人感センサーのデータを Airtable に送ってみよう</a>
     </h1>
 </div>
 
@@ -585,14 +583,109 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="エディタを開いてみよう"><a name="エディタを開いてみよう" class="plugin-anchor" href="#エディタを開いてみよう"><i class="fa fa-link" aria-hidden="true"></i></a>エディタを開いてみよう</h1>
-<p><img src="https://i.gyazo.com/d057d9808d47ea5887cd0ebe29ac6f2c.png" alt="d057d9808d47ea5887cd0ebe29ac6f2c"></p>
-<p>左のメニューから HTML プログラムをクリックします。</p>
-<p><img src="https://i.gyazo.com/d3453b5594d2c94e207ac7d90d732800.png" alt="d3453b5594d2c94e207ac7d90d732800"></p>
-<p>obniz ID が聞かれるので、今回使う自分の obniz ID を選択して開くをクリックします。</p>
-<p><img src="https://i.gyazo.com/3006a6f921b53f464d010b932ef2dd93.png" alt="3006a6f921b53f464d010b932ef2dd93"></p>
-<p>サンプルコードが入ったHTMLで、エディタが表示されます。</p>
-<p>これから、こちらにプログラムを書いて obniz を動かしていきます。</p>
+                                <h1 id="人感センサーのデータを-airtable-に送ってみよう"><a name="人感センサーのデータを-airtable-に送ってみよう" class="plugin-anchor" href="#人感センサーのデータを-airtable-に送ってみよう"><i class="fa fa-link" aria-hidden="true"></i></a>人感センサーのデータを Airtable に送ってみよう</h1>
+<p><img width="612.75" alt="2022-12-23 17.03.33.png (10.0 kB)" src="https://img.esa.io/uploads/production/attachments/3062/2022/12/23/8131/df5a1018-810d-4172-b442-def3fb8bd354.png"></p>
+<p>人感センサーのデータを Airtable に送ってみましょう。</p>
+<h2 id="つないでみる"><a name="つないでみる" class="plugin-anchor" href="#つないでみる"><i class="fa fa-link" aria-hidden="true"></i></a>つないでみる</h2>
+<p><img src="https://i.gyazo.com/4dd5af256639b05059a5014812221352.jpg" alt="4dd5af256639b05059a5014812221352"></p>
+<p>スターターキットにある人感センサを動かしてみましょう。</p>
+<p>ドキュメントは <a href="https://obniz.com/ja/sdk/parts/Keyestudio_PIR/README.md" target="_blank">https://obniz.com/ja/sdk/parts/Keyestudio_PIR/README.md</a> にあります。</p>
+<p><img src="https://i.gyazo.com/1af5c0b3cd1056378a9e863afa798ed2.jpg" alt="1af5c0b3cd1056378a9e863afa798ed2"></p>
+<p>このように S の刻印を 0 番ピン穴に合わせて挿しこみます。</p>
+<h2 id="obniz-を動かしてみる"><a name="obniz-を動かしてみる" class="plugin-anchor" href="#obniz-を動かしてみる"><i class="fa fa-link" aria-hidden="true"></i></a>obniz を動かしてみる</h2>
+<p>人感センサーのデータを Airtable に送ってみましょう。</p>
+<p>こちらを以前の内容は、すべて選択して消してから、エディタの内容を上書きします。</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://obniz.io/js/jquery-3.2.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>PIR sensor record to Airtable<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;obniz-debug&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+
+      <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
+      <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
+      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
+      <span class="hljs-comment">// 今回使う IFTTT Webhook の Event Name</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_EVENT_NAME = <span class="hljs-string">&apos;airtable_record&apos;</span>;
+
+      <span class="hljs-comment">// 接続後、センサーを動かす</span>
+      obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        obniz.display.clear();
+        obniz.display.print(<span class="hljs-string">&quot;[PIR]&quot;</span>);
+        <span class="hljs-comment">// PIR の呼び出し</span>
+        <span class="hljs-keyword">var</span> sensor = obniz.wired(<span class="hljs-string">&quot;Keyestudio_PIR&quot;</span>, {<span class="hljs-attr">signal</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">vcc</span>:<span class="hljs-number">1</span>, <span class="hljs-attr">gnd</span>:<span class="hljs-number">2</span>});
+        <span class="hljs-comment">// 人の気配があるかを検知</span>
+        sensor.onchange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>)</span>{
+          <span class="hljs-keyword">if</span>(val){
+              obniz.display.clear();
+              obniz.display.print(<span class="hljs-string">&quot;(0o0)&lt; Moving!&quot;</span>);
+              <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Moving!&quot;</span>);
+              sendIFTTT(<span class="hljs-string">&quot;動作検知&quot;</span>);
+          } <span class="hljs-keyword">else</span> {
+              obniz.display.clear();
+              obniz.display.print(<span class="hljs-string">&quot;(-_-)&quot;</span>);
+              <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Nothing moving&quot;</span>);
+              sendIFTTT(<span class="hljs-string">&quot;--&quot;</span>);
+          }
+        }
+      }
+
+      <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendIFTTT</span>(<span class="hljs-params">message</span>) </span>{
+        <span class="hljs-comment">// IFTTT Webhook に fetch 関数で送る ////////////////////////////</span>
+
+        <span class="hljs-comment">// メッセージ内容を URLSearchParams で作る</span>
+        <span class="hljs-comment">// 実際のメッセージは message 値</span>
+        <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams({
+            <span class="hljs-attr">value1</span>: message,
+            <span class="hljs-attr">value2</span>: <span class="hljs-string">&apos;value2&apos;</span>,
+            <span class="hljs-attr">value3</span>: <span class="hljs-string">&apos;value3&apos;</span>,
+        });
+        <span class="hljs-comment">// 送る文字列に変換</span>
+        <span class="hljs-keyword">const</span> paramsString = params.toString();
+        <span class="hljs-comment">// 設定</span>
+        <span class="hljs-keyword">const</span> config = {
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&apos;GET&apos;</span>,
+            <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;no-cors&apos;</span>,
+            <span class="hljs-attr">headers</span>: {
+                <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;application/x-www-form-urlencoded&apos;</span>
+            }
+        };
+        <span class="hljs-comment">// IFTTT Webhook の URL をつくる</span>
+        <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_URL = <span class="hljs-string">`https://maker.ifttt.com/trigger/<span class="hljs-subst">${IFTTT_WEBHOOK_EVENT_NAME}</span>/with/key/<span class="hljs-subst">${IFTTT_WEBHOOK_YOUR_KEY}</span>?<span class="hljs-subst">${paramsString}</span>`</span>;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;IFTTT_WEBHOOK_URL&quot;</span>);
+        <span class="hljs-built_in">console</span>.log(IFTTT_WEBHOOK_URL);
+        <span class="hljs-comment">// 送信</span>
+        <span class="hljs-keyword">await</span> fetch(IFTTT_WEBHOOK_URL, config);
+
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;OK&quot;</span>)
+
+      }
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>コピーアンドペーストできたら、</p>
+<pre><code class="lang-js">      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
+</code></pre>
+<p>の &apos;IFTTT_WEBHOOK_YOUR_KEY&apos; シングルクオーテーションの中を IFTTT Webhook のキーに変更します。</p>
+<p><img width="612.75" alt="2022-12-23 17.03.33.png (10.0 kB)" src="https://img.esa.io/uploads/production/attachments/3062/2022/12/23/8131/df5a1018-810d-4172-b442-def3fb8bd354.png"></p>
+<p>こちらを実行して人感センサーに手をかざしてみると、Airtable の Name フィールドに、動作検知したら <code>動作検知</code>。動きが無くなれば <code>--</code> と記録してくれます。</p>
+<h2 id="終了する"><a name="終了する" class="plugin-anchor" href="#終了する"><i class="fa fa-link" aria-hidden="true"></i></a>終了する</h2>
+<p><img src="https://i.gyazo.com/458bed935aa2dbcef07333fb1c676b43.png" alt="458bed935aa2dbcef07333fb1c676b43"></p>
+<p>右上の終了ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/0dcad23a2030b258bb62570f6ca23ed1.jpg" alt="0dcad23a2030b258bb62570f6ca23ed1"></p>
+<p>終了をすると obniz が処理待ちに戻ります。</p>
 
                                 
                                 </section>
@@ -620,14 +713,10 @@
 
             
                 
-                <a href="02-reference" class="navigation navigation-prev " aria-label="Previous page: リファレンスから動かしてみよう">
+                <a href="09-01-airtable-applet.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: IFTTT Airtable Applet 準備">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="04-display.html" class="navigation navigation-next " aria-label="Next page: 内蔵ディスプレイ">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -636,7 +725,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"エディタを動かしてみよう","level":"1.5","depth":1,"next":{"title":"内蔵ディスプレイ","level":"1.6","depth":1,"path":"04-display.md","ref":"04-display.md","articles":[]},"previous":{"title":"リファレンスから動かしてみよう","level":"1.4","depth":1,"path":"02-reference","ref":"02-reference","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"03-editor.md","mtime":"2022-12-21T07:16:27.254Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-23T12:50:54.786Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"人感センサーのデータを Airtable に送ってみよう","level":"1.11.2","depth":2,"next":{"title":"MESH と連携しよう","level":"1.12","depth":1,"ref":"","articles":[{"title":"いくつかのデモとコード紹介","level":"1.12.1","depth":2,"ref":"","articles":[]},{"title":"実装時のポイント紹介","level":"1.12.2","depth":2,"ref":"","articles":[]}]},"previous":{"title":"IFTTT Airtable Applet 準備","level":"1.11.1","depth":2,"path":"09-01-airtable-applet.md","ref":"09-01-airtable-applet.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"09-02-pir-sensor-airtable-record.md","mtime":"2022-12-23T12:50:13.855Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-23T12:50:54.786Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

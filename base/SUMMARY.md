@@ -22,14 +22,9 @@
   - [人感センサーを LINE Notify に通知しよう](07-03-line-notify-and-pir-sensor.md)
   - [超音波距離センサーを LINE Notify に通知しよう](07-04-line-notify-ultra-sonic.md)
 - [ほかのパーツも動かそう](08-other-parts.md)
-  - ブザー
-  - ボタン
-  - LED マトリックス
-  - 温度センサー
 - Airtable にデータを保存しよう
-  - Airtable の準備
-  - obniz クラウドでコードを動かしてみる
-  - 人感センサーのデータを送ってみよう
+  - [IFTTT Airtable Applet 準備](09-01-airtable-applet.md)
+  - [人感センサーのデータを Airtable に送ってみよう](09-02-pir-sensor-airtable-record.md)
 - MESH と連携しよう
   - いくつかのデモとコード紹介
   - 実装時のポイント紹介
