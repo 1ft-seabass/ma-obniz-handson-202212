@@ -7,10 +7,10 @@
         <meta property="og:type" content="article">
         <meta property="og:url" content="07-04-line-notify-ultra-sonic.html">
         <meta property="og:image" content="https://i.gyazo.com/7e2595fc53dfcc26d2eb00ba30726d63.png">
-        <meta property="og:title" content="[202212 obniz ハンズオン資料] 距離センサーを LINE Notify に通知しよう">
+        <meta property="og:title" content="[202212 obniz ハンズオン資料] 超音波距離センサーを LINE Notify に通知しよう">
         <meta property="og:description" content="2022/12 に行われる obniz ハンズオン資料です">
         <meta property="og:locale" content="ja">
-        <title>[202212 obniz ハンズオン資料] 距離センサーを LINE Notify に通知しよう</title>
+        <title>[202212 obniz ハンズオン資料] 超音波距離センサーを LINE Notify に通知しよう</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="2022/12 に行われる obniz ハンズオン資料です">
         <meta name="generator" content="HonKit 3.7.4">
@@ -74,6 +74,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
+    
+    <link rel="next" href="08-other-parts.html" />
     
     
     <link rel="prev" href="07-03-line-notify-and-pir-sensor.html" />
@@ -383,22 +385,9 @@
                 <a href="07-04-line-notify-ultra-sonic.html">
             
                     
-                    距離センサーを LINE Notify に通知しよう
+                    超音波距離センサーを LINE Notify に通知しよう
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.5" >
-            
-                <span>
-            
-                    
-                    温度センサーを LINE Notify に通知しよう
-            
-                </span>
             
 
             
@@ -409,14 +398,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10" >
+        <li class="chapter " data-level="1.10" data-path="08-other-parts.html">
             
-                <span>
+                <a href="08-other-parts.html">
             
                     
                     ほかのパーツも動かそう
             
-                </span>
+                </a>
             
 
             
@@ -455,6 +444,19 @@
             
                     
                     LED マトリックス
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" >
+            
+                <span>
+            
+                    
+                    温度センサー
             
                 </span>
             
@@ -639,7 +641,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >距離センサーを LINE Notify に通知しよう</a>
+        <a href="." >超音波距離センサーを LINE Notify に通知しよう</a>
     </h1>
 </div>
 
@@ -654,7 +656,223 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="超音波距離センサーを-line-notify-に通知しよう"><a name="超音波距離センサーを-line-notify-に通知しよう" class="plugin-anchor" href="#超音波距離センサーを-line-notify-に通知しよう"><i class="fa fa-link" aria-hidden="true"></i></a>超音波距離センサーを LINE Notify に通知しよう</h1>
+<p><img src="https://i.gyazo.com/7cb0862217779ad0839c94dd359f365c.jpg" alt="7cb0862217779ad0839c94dd359f365c"></p>
+<p>超音波距離センサーを LINE Notify に通知してみましょう。</p>
+<h2 id="つないでみる"><a name="つないでみる" class="plugin-anchor" href="#つないでみる"><i class="fa fa-link" aria-hidden="true"></i></a>つないでみる</h2>
+<p><img src="https://i.gyazo.com/ea6b803818c4c007e54a0fb321bcaf2c.jpg" alt="ea6b803818c4c007e54a0fb321bcaf2c"></p>
+<p>スターターキットにある超音波距離センサーをつなぎます。</p>
+<p>ドキュメントは <a href="https://obniz.com/ja/sdk/parts/HC-SR04/README.md" target="_blank">https://obniz.com/ja/sdk/parts/HC-SR04/README.md</a> にあります。</p>
+<p><img src="https://i.gyazo.com/7c8af2aa5ae307a9a95b6ac559fa0f32.jpg" alt="7c8af2aa5ae307a9a95b6ac559fa0f32"></p>
+<p>このように、GND を 0 番ピンに合わせて挿しこみます。</p>
+<p><img src="https://i.gyazo.com/a621fe75d0993420dee8ffb009f5ae66.jpg" alt="a621fe75d0993420dee8ffb009f5ae66"></p>
+<p>しっかり最後まで差し込みましょう。</p>
+<h2 id="超音波距離センサーを-line-notify-と連携してみる"><a name="超音波距離センサーを-line-notify-と連携してみる" class="plugin-anchor" href="#超音波距離センサーを-line-notify-と連携してみる"><i class="fa fa-link" aria-hidden="true"></i></a>超音波距離センサーを LINE Notify と連携してみる</h2>
+<p>超音波距離センサーの反応をLINE Notify と連携してみましょう。</p>
+<p>こちらを以前の内容は、すべて選択して消してから、エディタの内容を上書きします。</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://obniz.io/js/jquery-3.2.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Simple LINE Notify!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;obniz-debug&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+
+      <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
+      <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
+      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
+      <span class="hljs-comment">// 今回使う IFTTT Webhook の Event Name</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_EVENT_NAME = <span class="hljs-string">&apos;line_notify&apos;</span>;
+
+      <span class="hljs-comment">// 接続後、ディスプレイに指示を出して、センサー取得</span>
+      obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;[distance]&quot;</span>);
+        <span class="hljs-comment">// ディスプレイ表示</span>
+        obniz.display.clear();
+        obniz.display.print(<span class="hljs-string">&quot;[distance]&quot;</span>);
+        <span class="hljs-keyword">const</span> hcsr04 = obniz.wired(<span class="hljs-string">&quot;HC-SR04&quot;</span>, {<span class="hljs-attr">gnd</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">echo</span>:<span class="hljs-number">1</span>, <span class="hljs-attr">trigger</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">vcc</span>:<span class="hljs-number">3</span>});
+        <span class="hljs-comment">// 1秒ごとチェック</span>
+        obniz.onloop = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+          <span class="hljs-comment">// 距離取得</span>
+          <span class="hljs-keyword">const</span> distanceMM = <span class="hljs-keyword">await</span> hcsr04.measureWait();
+          <span class="hljs-comment">// 小数点切り捨て + mm から cm に変換</span>
+          <span class="hljs-keyword">const</span> distanceCM = <span class="hljs-built_in">Math</span>.floor(distanceMM / <span class="hljs-number">10</span>);
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${distanceCM}</span> cm`</span>);
+          <span class="hljs-comment">// ディスプレイ表示</span>
+          obniz.display.clear();
+          obniz.display.print(<span class="hljs-string">`<span class="hljs-subst">${distanceCM}</span> cm`</span>);
+          <span class="hljs-comment">// 50 cm 以下だったら LINE Notify に通知</span>
+          <span class="hljs-keyword">if</span>(distanceCM &lt; <span class="hljs-number">50</span>){
+            sendIFTTT(<span class="hljs-string">&apos;50 cm 以内に物体が近づいたよ！こわい！&apos;</span>);
+          }
+          <span class="hljs-comment">// 1秒ごと待つ</span>
+          <span class="hljs-keyword">await</span> obniz.wait(<span class="hljs-number">1000</span>);
+        }
+      }
+
+      <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendIFTTT</span>(<span class="hljs-params">message</span>) </span>{
+        <span class="hljs-comment">// IFTTT Webhook に fetch 関数で送る ////////////////////////////</span>
+
+        <span class="hljs-comment">// メッセージ内容を URLSearchParams で作る</span>
+        <span class="hljs-comment">// 実際のメッセージは message 値</span>
+        <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams({
+            <span class="hljs-attr">value1</span>: message,
+            <span class="hljs-attr">value2</span>: <span class="hljs-string">&apos;value2&apos;</span>,
+            <span class="hljs-attr">value3</span>: <span class="hljs-string">&apos;value3&apos;</span>,
+        });
+        <span class="hljs-comment">// 送る文字列に変換</span>
+        <span class="hljs-keyword">const</span> paramsString = params.toString();
+        <span class="hljs-comment">// 設定</span>
+        <span class="hljs-keyword">const</span> config = {
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&apos;GET&apos;</span>,
+            <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;no-cors&apos;</span>,
+            <span class="hljs-attr">headers</span>: {
+                <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;application/x-www-form-urlencoded&apos;</span>
+            }
+        };
+        <span class="hljs-comment">// IFTTT Webhook の URL をつくる</span>
+        <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_URL = <span class="hljs-string">`https://maker.ifttt.com/trigger/<span class="hljs-subst">${IFTTT_WEBHOOK_EVENT_NAME}</span>/with/key/<span class="hljs-subst">${IFTTT_WEBHOOK_YOUR_KEY}</span>?<span class="hljs-subst">${paramsString}</span>`</span>;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;IFTTT_WEBHOOK_URL&quot;</span>);
+        <span class="hljs-built_in">console</span>.log(IFTTT_WEBHOOK_URL);
+        <span class="hljs-comment">// 送信</span>
+        <span class="hljs-keyword">await</span> fetch(IFTTT_WEBHOOK_URL, config);
+
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;OK&quot;</span>)
+
+      }
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>コピーアンドペーストできたら、</p>
+<pre><code class="lang-js">      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
+</code></pre>
+<p>の &apos;IFTTT_WEBHOOK_YOUR_KEY&apos; シングルクオーテーションの中を IFTTT Webhook のキーに変更します。</p>
+<p><img src="https://i.gyazo.com/7cb0862217779ad0839c94dd359f365c.jpg" alt="7cb0862217779ad0839c94dd359f365c"></p>
+<p>こちらを実行して超音波距離センサーに 50 cm 以内で手を近づけると、LINE Notify にこのように知らせてくれます。</p>
+<h2 id="変化した時だけ通知する場合"><a name="変化した時だけ通知する場合" class="plugin-anchor" href="#変化した時だけ通知する場合"><i class="fa fa-link" aria-hidden="true"></i></a>変化した時だけ通知する場合</h2>
+<p>先ほどのプログラムですと、手をかざしていると 1 秒ごとに通知が来てしまいます。</p>
+<p>変化があるときだけ行う場合は、以下のようにしましょう。</p>
+<p>こちらを以前の内容は、すべて選択して消してから、エディタの内容を上書きして &apos;IFTTT_WEBHOOK_YOUR_KEY&apos; シングルクオーテーションの中を IFTTT Webhook のキーに変更します。</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://obniz.io/js/jquery-3.2.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Simple LINE Notify!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;obniz-debug&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+
+      <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
+      <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
+      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
+      <span class="hljs-comment">// 今回使う IFTTT Webhook の Event Name</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_EVENT_NAME = <span class="hljs-string">&apos;line_notify&apos;</span>;
+
+      <span class="hljs-comment">// 以前の状態の記録</span>
+      <span class="hljs-keyword">let</span> previousStatus = <span class="hljs-number">0</span>;
+      <span class="hljs-comment">// 現在の状態の記録</span>
+      <span class="hljs-keyword">let</span> currentStatus = <span class="hljs-number">0</span>;
+
+      <span class="hljs-comment">// 接続後、ディスプレイに指示を出して、センサー取得</span>
+      obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;[distance]&quot;</span>);
+        <span class="hljs-comment">// ディスプレイ表示</span>
+        obniz.display.clear();
+        obniz.display.print(<span class="hljs-string">&quot;[distance]&quot;</span>);
+        <span class="hljs-keyword">const</span> hcsr04 = obniz.wired(<span class="hljs-string">&quot;HC-SR04&quot;</span>, {<span class="hljs-attr">gnd</span>:<span class="hljs-number">0</span>, <span class="hljs-attr">echo</span>:<span class="hljs-number">1</span>, <span class="hljs-attr">trigger</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">vcc</span>:<span class="hljs-number">3</span>});
+        <span class="hljs-comment">// 1秒ごとチェック</span>
+        obniz.onloop = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+          <span class="hljs-comment">// 距離取得</span>
+          <span class="hljs-keyword">const</span> distanceMM = <span class="hljs-keyword">await</span> hcsr04.measureWait();
+          <span class="hljs-comment">// 小数点切り捨て + mm から cm に変換</span>
+          <span class="hljs-keyword">const</span> distanceCM = <span class="hljs-built_in">Math</span>.floor(distanceMM / <span class="hljs-number">10</span>);
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${distanceCM}</span> cm`</span>);
+          <span class="hljs-comment">// ディスプレイ表示</span>
+          obniz.display.clear();
+          obniz.display.print(<span class="hljs-string">`<span class="hljs-subst">${distanceCM}</span> cm`</span>);
+          <span class="hljs-comment">// 50 cm 以下だったら LINE Notify に通知</span>
+          <span class="hljs-keyword">if</span>(distanceCM &lt; <span class="hljs-number">50</span>){
+            currentStatus = <span class="hljs-number">1</span>;  <span class="hljs-comment">// 物体あり</span>
+          } <span class="hljs-keyword">else</span> {
+            currentStatus = <span class="hljs-number">0</span>;  <span class="hljs-comment">// 物体なし</span>
+          }
+          <span class="hljs-comment">// 状態が変わったら通知</span>
+          <span class="hljs-keyword">if</span>(currentStatus != previousStatus){
+            <span class="hljs-keyword">if</span>(currentStatus == <span class="hljs-number">1</span>){
+              sendIFTTT(<span class="hljs-string">&apos;50 cm 以内に物体が近づいたよ！こわい！&apos;</span>);
+            } <span class="hljs-keyword">else</span> {
+              sendIFTTT(<span class="hljs-string">&apos;物体なし&apos;</span>);
+            }
+            <span class="hljs-comment">// 状態の記録</span>
+            previousStatus = currentStatus;
+          }
+          <span class="hljs-comment">// 1秒ごと待つ</span>
+          <span class="hljs-keyword">await</span> obniz.wait(<span class="hljs-number">1000</span>);
+        }
+      }
+
+      <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendIFTTT</span>(<span class="hljs-params">message</span>) </span>{
+        <span class="hljs-comment">// IFTTT Webhook に fetch 関数で送る ////////////////////////////</span>
+
+        <span class="hljs-comment">// メッセージ内容を URLSearchParams で作る</span>
+        <span class="hljs-comment">// 実際のメッセージは message 値</span>
+        <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams({
+            <span class="hljs-attr">value1</span>: message,
+            <span class="hljs-attr">value2</span>: <span class="hljs-string">&apos;value2&apos;</span>,
+            <span class="hljs-attr">value3</span>: <span class="hljs-string">&apos;value3&apos;</span>,
+        });
+        <span class="hljs-comment">// 送る文字列に変換</span>
+        <span class="hljs-keyword">const</span> paramsString = params.toString();
+        <span class="hljs-comment">// 設定</span>
+        <span class="hljs-keyword">const</span> config = {
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&apos;GET&apos;</span>,
+            <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;no-cors&apos;</span>,
+            <span class="hljs-attr">headers</span>: {
+                <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;application/x-www-form-urlencoded&apos;</span>
+            }
+        };
+        <span class="hljs-comment">// IFTTT Webhook の URL をつくる</span>
+        <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_URL = <span class="hljs-string">`https://maker.ifttt.com/trigger/<span class="hljs-subst">${IFTTT_WEBHOOK_EVENT_NAME}</span>/with/key/<span class="hljs-subst">${IFTTT_WEBHOOK_YOUR_KEY}</span>?<span class="hljs-subst">${paramsString}</span>`</span>;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;IFTTT_WEBHOOK_URL&quot;</span>);
+        <span class="hljs-built_in">console</span>.log(IFTTT_WEBHOOK_URL);
+        <span class="hljs-comment">// 送信</span>
+        <span class="hljs-keyword">await</span> fetch(IFTTT_WEBHOOK_URL, config);
+
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;OK&quot;</span>)
+
+      }
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>previousStatus と currentStatus の値で状態を管理して、状態が変わったら、通知を送るようにしています。こうすることで、常に余分な通知せず、より良い仕組みを作ることができます。</p>
+<p><img src="https://i.gyazo.com/e97611242a73bd964f8282e55260a193.jpg" alt="e97611242a73bd964f8282e55260a193"></p>
+<p>実行してみると、状態が変わった時だけ通知していて、物体なしの状態が続いても物体ありから変化したときにも送られてます。</p>
+<h2 id="終了する"><a name="終了する" class="plugin-anchor" href="#終了する"><i class="fa fa-link" aria-hidden="true"></i></a>終了する</h2>
+<p><img src="https://i.gyazo.com/458bed935aa2dbcef07333fb1c676b43.png" alt="458bed935aa2dbcef07333fb1c676b43"></p>
+<p>右上の終了ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/0dcad23a2030b258bb62570f6ca23ed1.jpg" alt="0dcad23a2030b258bb62570f6ca23ed1"></p>
+<p>終了をすると obniz が処理待ちに戻ります。</p>
+
                                 
                                 </section>
                             
@@ -681,10 +899,14 @@
 
             
                 
-                <a href="07-03-line-notify-and-pir-sensor.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 人感センサーを LINE Notify に通知しよう">
+                <a href="07-03-line-notify-and-pir-sensor.html" class="navigation navigation-prev " aria-label="Previous page: 人感センサーを LINE Notify に通知しよう">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="08-other-parts.html" class="navigation navigation-next " aria-label="Next page: ほかのパーツも動かそう">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -693,7 +915,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"距離センサーを LINE Notify に通知しよう","level":"1.9.4","depth":2,"next":{"title":"温度センサーを LINE Notify に通知しよう","level":"1.9.5","depth":2,"ref":"","articles":[]},"previous":{"title":"人感センサーを LINE Notify に通知しよう","level":"1.9.3","depth":2,"path":"07-03-line-notify-and-pir-sensor.md","ref":"07-03-line-notify-and-pir-sensor.md","articles":[]},"dir":"neutral"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"07-04-line-notify-ultra-sonic.md","mtime":"2022-12-21T07:37:05.117Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-22T11:42:09.736Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"超音波距離センサーを LINE Notify に通知しよう","level":"1.9.4","depth":2,"next":{"title":"ほかのパーツも動かそう","level":"1.10","depth":1,"path":"08-other-parts.md","ref":"08-other-parts.md","articles":[{"title":"ブザー","level":"1.10.1","depth":2,"ref":"","articles":[]},{"title":"ボタン","level":"1.10.2","depth":2,"ref":"","articles":[]},{"title":"LED マトリックス","level":"1.10.3","depth":2,"ref":"","articles":[]},{"title":"温度センサー","level":"1.10.4","depth":2,"ref":"","articles":[]}]},"previous":{"title":"人感センサーを LINE Notify に通知しよう","level":"1.9.3","depth":2,"path":"07-03-line-notify-and-pir-sensor.md","ref":"07-03-line-notify-and-pir-sensor.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"07-04-line-notify-ultra-sonic.md","mtime":"2022-12-23T06:35:56.829Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-23T07:30:55.998Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

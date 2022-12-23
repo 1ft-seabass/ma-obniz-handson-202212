@@ -385,22 +385,9 @@
                 <a href="07-04-line-notify-ultra-sonic.html">
             
                     
-                    距離センサーを LINE Notify に通知しよう
+                    超音波距離センサーを LINE Notify に通知しよう
             
                 </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.9.5" >
-            
-                <span>
-            
-                    
-                    温度センサーを LINE Notify に通知しよう
-            
-                </span>
             
 
             
@@ -411,14 +398,14 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10" >
+        <li class="chapter " data-level="1.10" data-path="08-other-parts.html">
             
-                <span>
+                <a href="08-other-parts.html">
             
                     
                     ほかのパーツも動かそう
             
-                </span>
+                </a>
             
 
             
@@ -457,6 +444,19 @@
             
                     
                     LED マトリックス
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" >
+            
+                <span>
+            
+                    
+                    温度センサー
             
                 </span>
             
@@ -656,7 +656,271 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="内蔵スイッチを-line-notify-に通知しよう"><a name="内蔵スイッチを-line-notify-に通知しよう" class="plugin-anchor" href="#内蔵スイッチを-line-notify-に通知しよう"><i class="fa fa-link" aria-hidden="true"></i></a>内蔵スイッチを LINE Notify に通知しよう</h1>
+<p><img src="https://i.gyazo.com/2ce5be23e2d71ab0891d120cafec9abe.png" alt="2ce5be23e2d71ab0891d120cafec9abe"></p>
+<p>内蔵スイッチを左右に回したり押したりすると LINE Notify にメッセージが届く仕組みを作ります。</p>
+<h2 id="line-notify-に送るためには"><a name="line-notify-に送るためには" class="plugin-anchor" href="#line-notify-に送るためには"><i class="fa fa-link" aria-hidden="true"></i></a>LINE Notify に送るためには</h2>
+<p><img src="https://i.gyazo.com/e615b4141fbe46aceac07a633e80323d.png" alt="e615b4141fbe46aceac07a633e80323d"></p>
+<p>まず、obniz クラウドはブラウザから LINE Notify にアクセスしようとすると、この場合 LINE Notify のサーバーが obniz.com からのアクセスを許可していないのでクロスドメインの制約からアクセスすることができません。</p>
+<ul>
+<li>参考資料<ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/HTTP/CORS" target="_blank">オリジン間リソース共有 (CORS) - HTTP | MDN</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.gyazo.com/e633777352d16bc7f28530bb7bbe7202.png" alt="e633777352d16bc7f28530bb7bbe7202"></p>
+<p>この制約はブラウザで限った話でして、サーバー間のやりとりでは、その制約は受けません。ですので、今回は IFTTT が橋渡しの役目をします。IFTTT Webhook サービスを使って obniz のデータを受けて IFTTT が LINE Notify に橋渡しをするという仕組みで進めます。</p>
+<p><img src="https://i.gyazo.com/07644da20127606b61c3fd369e98c217.png" alt="07644da20127606b61c3fd369e98c217"></p>
+<p>これが、事前準備で作った仕組みですね。</p>
+<h2 id="自作のサーバーや-aws-lambda-のような仕組みが使える場合"><a name="自作のサーバーや-aws-lambda-のような仕組みが使える場合" class="plugin-anchor" href="#自作のサーバーや-aws-lambda-のような仕組みが使える場合"><i class="fa fa-link" aria-hidden="true"></i></a>自作のサーバーや AWS Lambda のような仕組みが使える場合</h2>
+<p><img src="https://i.gyazo.com/30d4c87d86ec7b8662d30f6111e5cf01.png" alt="30d4c87d86ec7b8662d30f6111e5cf01"></p>
+<p>もし、自作のサーバーや AWS Lambda のような仕組みが使えるのであれば、CORS を obniz.com に解放してあげれば、サーバーにアクセスできるようになるので、そういった開発がハッカソンで出来るのであればやってみましょう。</p>
+<ul>
+<li>AWS Lambda の例<ul>
+<li><a href="https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/how-to-cors.html" target="_blank">REST API リソースの CORS を有効にする - Amazon API Gateway</a></li>
+</ul>
+</li>
+<li>Node.js の Express サーバーの例<ul>
+<li>Node.js + Express で複数オリジンに対応した CORS の実装サンプル<ul>
+<li><a href="http://dotnsf.blog.jp/archives/1080458826.html" target="_blank">http://dotnsf.blog.jp/archives/1080458826.html</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>CORS を obniz.com に解放を狙い撃ちで行うのが大変なときは、一度 * （アスタリスク）で全開放して試すとハマりにくくておススメです。その上で、絞りましょう。</p>
+<p>チーム内でそういった対応ができる場合は、ぜひ相談してみましょう～。</p>
+<h2 id="ifttt-webhook-のキーの準備"><a name="ifttt-webhook-のキーの準備" class="plugin-anchor" href="#ifttt-webhook-のキーの準備"><i class="fa fa-link" aria-hidden="true"></i></a>IFTTT Webhook のキーの準備</h2>
+<p><img src="https://i.gyazo.com/dac67d3ad447bc2b43c97b861bfa3f57.png" alt="dac67d3ad447bc2b43c97b861bfa3f57"></p>
+<p>事前準備で準備した、こちらの IFTTT Webhook のキーを手元に準備します。メモしてない方は、再度 <a href="https://ifttt.com/maker_webhooks" target="_blank">https://ifttt.com/maker_webhooks</a> から Documentation ボタンをクリックして設定を確認しましょう。</p>
+<h2 id="シンプルに-line-notify-だけする"><a name="シンプルに-line-notify-だけする" class="plugin-anchor" href="#シンプルに-line-notify-だけする"><i class="fa fa-link" aria-hidden="true"></i></a>シンプルに LINE Notify だけする</h2>
+<p><img src="https://i.gyazo.com/8cd2c0dd521d06ef897bed45b8137819.jpg" alt="8cd2c0dd521d06ef897bed45b8137819"></p>
+<p>はじめに、トークンなどの設定がうまく揃っているか、スイッチの連携をせずシンプルに LINE Notify だけやってみましょう。</p>
+<p>こちらを以前の内容は、すべて選択して消してから、エディタの内容を上書きします。</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://obniz.io/js/jquery-3.2.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Simple LINE Notify!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;obniz-debug&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+
+      <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
+      <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
+      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
+      <span class="hljs-comment">// 今回使う IFTTT Webhook の Event Name</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_EVENT_NAME = <span class="hljs-string">&apos;line_notify&apos;</span>;
+
+      <span class="hljs-comment">// 接続後、ディスプレイに指示を出す</span>
+      obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// ディスプレイ表示</span>
+        obniz.display.clear();
+        obniz.display.print(<span class="hljs-string">&quot;Simple&quot;</span>);
+        obniz.display.print(<span class="hljs-string">&quot;LINE Notify&quot;</span>);
+        obniz.display.print(<span class="hljs-string">&quot;with IFTTT!&quot;</span>);
+
+        <span class="hljs-comment">// IFTTT Webhook に fetch 関数で送る ////////////////////////////</span>
+
+        <span class="hljs-comment">// メッセージ内容を URLSearchParams で作る</span>
+        <span class="hljs-comment">// 実際のメッセージは message 値</span>
+        <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams({
+            <span class="hljs-attr">value1</span>: <span class="hljs-string">&apos;シンプルに送ってみました！&apos;</span>,
+            <span class="hljs-attr">value2</span>: <span class="hljs-string">&apos;value2&apos;</span>,
+            <span class="hljs-attr">value3</span>: <span class="hljs-string">&apos;value3&apos;</span>,
+        });
+        <span class="hljs-comment">// 送る文字列に変換</span>
+        <span class="hljs-keyword">const</span> paramsString = params.toString();
+        <span class="hljs-comment">// 設定</span>
+        <span class="hljs-keyword">const</span> config = {
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&apos;GET&apos;</span>,
+            <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;no-cors&apos;</span>,
+            <span class="hljs-attr">headers</span>: {
+                <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;application/x-www-form-urlencoded&apos;</span>
+            }
+        };
+        <span class="hljs-comment">// IFTTT Webhook の URL をつくる</span>
+        <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_URL = <span class="hljs-string">`https://maker.ifttt.com/trigger/<span class="hljs-subst">${IFTTT_WEBHOOK_EVENT_NAME}</span>/with/key/<span class="hljs-subst">${IFTTT_WEBHOOK_YOUR_KEY}</span>?<span class="hljs-subst">${paramsString}</span>`</span>;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;IFTTT_WEBHOOK_URL&quot;</span>);
+        <span class="hljs-built_in">console</span>.log(IFTTT_WEBHOOK_URL);
+        <span class="hljs-comment">// 送信</span>
+        <span class="hljs-keyword">await</span> fetch(IFTTT_WEBHOOK_URL, config);
+
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;OK&quot;</span>)
+
+      }
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>コピーアンドペーストできたら、</p>
+<pre><code class="lang-js">      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
+</code></pre>
+<p>の &apos;IFTTT_WEBHOOK_YOUR_KEY&apos; シングルクオーテーションの中を IFTTT Webhook のキーに変更します。</p>
+<p>こちらを実行してみると、LINE Notify に「シンプルに送ってみました！」というメッセージが送られます。</p>
+<p><img src="https://i.gyazo.com/2ce5be23e2d71ab0891d120cafec9abe.png" alt="2ce5be23e2d71ab0891d120cafec9abe"></p>
+<p>スマホの LINE アプリケーションを見てみると、今回送った LINE Notify にメッセージがこのように送られています！</p>
+<h2 id="メッセージを変更してみましょう"><a name="メッセージを変更してみましょう" class="plugin-anchor" href="#メッセージを変更してみましょう"><i class="fa fa-link" aria-hidden="true"></i></a>メッセージを変更してみましょう</h2>
+<p>IFTTT Webhook には value1 value2 value3 という 3 つのメッセージを受け付けています。</p>
+<pre><code>        // メッセージ内容を URLSearchParams で作る
+        // 実際のメッセージは message 値
+        const params = new URLSearchParams({
+            value1: &apos;シンプルに送ってみました！&apos;,
+            value2: &apos;value2&apos;,
+            value3: &apos;value3&apos;,
+        });
+</code></pre><p>こちらの <code>value1: &apos;シンプルに送ってみました！&apos;,</code> の部分がメッセージです。「シンプルに送ってみました！」の部分を変更してメッセージを変更してみましょう。</p>
+<p><img src="https://i.gyazo.com/117a7400f745a63b0c66fe5007d16346.png" alt="117a7400f745a63b0c66fe5007d16346"></p>
+<p>なおメッセージの文言は、IFTTT の Applet 内で Message の項目で設定していました。</p>
+<h2 id="内蔵スイッチと連携してみる"><a name="内蔵スイッチと連携してみる" class="plugin-anchor" href="#内蔵スイッチと連携してみる"><i class="fa fa-link" aria-hidden="true"></i></a>内蔵スイッチと連携してみる</h2>
+<p><img src="https://i.gyazo.com/a49e987053d5f18cacf77f2d6f2b5370.jpg" alt="a49e987053d5f18cacf77f2d6f2b5370"></p>
+<p>つづいて、内蔵スイッチと連携してみましょう。内蔵スイッチを左右に回したり押したりすると LINE Notify にメッセージが届く仕組みを作ります。</p>
+<p>こちらを以前の内容は、すべて選択して消してから、エディタの内容を上書きします。</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://obniz.io/js/jquery-3.2.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Simple LINE Notify!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;obniz-debug&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+
+      <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
+      <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
+      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
+      <span class="hljs-comment">// 今回使う IFTTT Webhook の Event Name</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_EVENT_NAME = <span class="hljs-string">&apos;line_notify&apos;</span>;
+
+      <span class="hljs-comment">// 接続後、ディスプレイに指示を出す</span>
+      obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;[switch]&quot;</span>);
+        <span class="hljs-comment">// ディスプレイ表示</span>
+        obniz.display.clear();
+        obniz.display.print(<span class="hljs-string">&quot;[switch]&quot;</span>);
+        obniz.display.print(<span class="hljs-string">&quot;LINE Notify&quot;</span>);
+        obniz.display.print(<span class="hljs-string">&quot;with IFTTT!&quot;</span>);
+        <span class="hljs-comment">// スイッチの動きを検出</span>
+        obniz.switch.onchange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">state</span>) </span>{
+          <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;push&quot;</span>) {
+            <span class="hljs-comment">// 押されたとき</span>
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;push&quot;</span>);
+            <span class="hljs-comment">// ディスプレイ表示</span>
+            obniz.display.clear();
+            obniz.display.print(<span class="hljs-string">&quot;push&quot;</span>);
+            <span class="hljs-comment">// メッセージを送る</span>
+            sendIFTTT(<span class="hljs-string">&quot;push&quot;</span>);
+          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;right&quot;</span>) {
+            <span class="hljs-comment">// 右に回したとき</span>
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;right&quot;</span>);
+            <span class="hljs-comment">// ディスプレイ表示</span>
+            obniz.display.clear();
+            obniz.display.print(<span class="hljs-string">&quot;right&quot;</span>);
+            <span class="hljs-comment">// メッセージを送る</span>
+            sendIFTTT(<span class="hljs-string">&quot;right&quot;</span>);
+          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;left&quot;</span>) {
+            <span class="hljs-comment">// 左に回したとき</span>
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;left&quot;</span>);
+            <span class="hljs-comment">// ディスプレイ表示</span>
+            obniz.display.clear();
+            obniz.display.print(<span class="hljs-string">&quot;left&quot;</span>);
+            <span class="hljs-comment">// メッセージを送る</span>
+            sendIFTTT(<span class="hljs-string">&quot;left&quot;</span>);
+          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;none&quot;</span>) {
+            <span class="hljs-comment">// 何もしていない時</span>
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;none&quot;</span>);
+            <span class="hljs-comment">// ディスプレイ表示</span>
+            obniz.display.clear();
+            obniz.display.print(<span class="hljs-string">&quot;none&quot;</span>);
+          }
+        }
+      }
+
+      <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendIFTTT</span>(<span class="hljs-params">message</span>) </span>{
+        <span class="hljs-comment">// IFTTT Webhook に fetch 関数で送る ////////////////////////////</span>
+
+        <span class="hljs-comment">// メッセージ内容を URLSearchParams で作る</span>
+        <span class="hljs-comment">// 実際のメッセージは message 値</span>
+        <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams({
+            <span class="hljs-attr">value1</span>: message,
+            <span class="hljs-attr">value2</span>: <span class="hljs-string">&apos;value2&apos;</span>,
+            <span class="hljs-attr">value3</span>: <span class="hljs-string">&apos;value3&apos;</span>,
+        });
+        <span class="hljs-comment">// 送る文字列に変換</span>
+        <span class="hljs-keyword">const</span> paramsString = params.toString();
+        <span class="hljs-comment">// 設定</span>
+        <span class="hljs-keyword">const</span> config = {
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&apos;GET&apos;</span>,
+            <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;no-cors&apos;</span>,
+            <span class="hljs-attr">headers</span>: {
+                <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;application/x-www-form-urlencoded&apos;</span>
+            }
+        };
+        <span class="hljs-comment">// IFTTT Webhook の URL をつくる</span>
+        <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_URL = <span class="hljs-string">`https://maker.ifttt.com/trigger/<span class="hljs-subst">${IFTTT_WEBHOOK_EVENT_NAME}</span>/with/key/<span class="hljs-subst">${IFTTT_WEBHOOK_YOUR_KEY}</span>?<span class="hljs-subst">${paramsString}</span>`</span>;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;IFTTT_WEBHOOK_URL&quot;</span>);
+        <span class="hljs-built_in">console</span>.log(IFTTT_WEBHOOK_URL);
+        <span class="hljs-comment">// 送信</span>
+        <span class="hljs-keyword">await</span> fetch(IFTTT_WEBHOOK_URL, config);
+
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;OK&quot;</span>)
+
+      }
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>コピーアンドペーストできたら、</p>
+<pre><code class="lang-js">      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
+      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
+</code></pre>
+<p>の &apos;IFTTT_WEBHOOK_YOUR_KEY&apos; シングルクオーテーションの中を IFTTT Webhook のキーに変更します。</p>
+<p><img src="https://i.gyazo.com/a49e987053d5f18cacf77f2d6f2b5370.jpg" alt="a49e987053d5f18cacf77f2d6f2b5370"></p>
+<p>こちらを実行して内蔵スイッチを右・左・押してみると、LINE Notify に left right push が送られます。</p>
+<h2 id="余分な文字を減らしてメッセージを整える"><a name="余分な文字を減らしてメッセージを整える" class="plugin-anchor" href="#余分な文字を減らしてメッセージを整える"><i class="fa fa-link" aria-hidden="true"></i></a>余分な文字を減らしてメッセージを整える</h2>
+<p>IFTTT で受け付けたメッセージが編集できます。</p>
+<p><img src="https://i.gyazo.com/117a7400f745a63b0c66fe5007d16346.png" alt="117a7400f745a63b0c66fe5007d16346"></p>
+<p>このメッセージですと value2 value3 をメッセージを受け付けていますが、今回は value1 しか使いません。ちょっと整形してみましょう。</p>
+<p><img src="https://i.gyazo.com/51e9e7347eeafda5cd51f6885e95d05c.png" alt="51e9e7347eeafda5cd51f6885e95d05c"></p>
+<p>IFTTT の今回の Applet に移動します。IFTTT にアクセスして上部メニューの My Applet から Applet 一覧を表示し、今回の Applet をクリックします。</p>
+<p><img src="https://i.gyazo.com/5baf9f537672a38595a2cf98fa76cbec.png" alt="5baf9f537672a38595a2cf98fa76cbec"></p>
+<p>今回の Applet の右上の Settings ボタンをクリックして設定を表示します。</p>
+<p><img src="https://i.gyazo.com/30bdaeed0d6937d7fdfd6fa7ae05ff73.png" alt="30bdaeed0d6937d7fdfd6fa7ae05ff73"></p>
+<p>Then の LINE の設定をクリックします。</p>
+<p><img src="https://i.gyazo.com/8d4dcaf734d3f98922edcfa9f8824439.png" alt="8d4dcaf734d3f98922edcfa9f8824439"></p>
+<p>設定が表示されたら Message のフィールドをクリックすると <code>{{Value1}}</code> を囲われた部分が、Webhook から来た値 Value1 と置き換えます。</p>
+<p><img src="https://i.gyazo.com/00141bc7bac7dd00615a54253b926db2.png" alt="00141bc7bac7dd00615a54253b926db2"></p>
+<p>ちなみに、右下の Add ingredient をクリックすると、Webhook からもらえる値の一覧が表示されクリックすると <code>{{　}}</code> つきで入力できます。（今回は特に追加で入れるのではなく、減らしていくで操作する必要はありません）</p>
+<p><img src="https://i.gyazo.com/2e12095b7d448dc033dccd0471f4ec65.png" alt="2e12095b7d448dc033dccd0471f4ec65"></p>
+<p>ということで、Message フィールド内をこのように編集します。 <code>{{Value1}}</code> だけのシンプルなものです。編集できたら Update action をクリックします。</p>
+<p><img src="https://i.gyazo.com/cd7be3a76681f8c66c9dde80911ac261.png" alt="cd7be3a76681f8c66c9dde80911ac261"></p>
+<p>前のページに戻って、Edit Applet の画面に戻るので Update ボタンをクリックして設定を反映します。</p>
+<p>これで準備が完了です。</p>
+<p><img src="https://i.gyazo.com/d1ced7251548897899282086f0ff416b.jpg" alt="d1ced7251548897899282086f0ff416b"></p>
+<p>再度 obniz を実行してみると、メッセージの内容がシンプルになります！</p>
+<p>このように、obniz クラウドからはシンプルに値を送り IFTTT 側で、メッセージを調整することができます。</p>
+<h2 id="終了する"><a name="終了する" class="plugin-anchor" href="#終了する"><i class="fa fa-link" aria-hidden="true"></i></a>終了する</h2>
+<p><img src="https://i.gyazo.com/458bed935aa2dbcef07333fb1c676b43.png" alt="458bed935aa2dbcef07333fb1c676b43"></p>
+<p>右上の終了ボタンをクリックします。</p>
+<p><img src="https://i.gyazo.com/0dcad23a2030b258bb62570f6ca23ed1.jpg" alt="0dcad23a2030b258bb62570f6ca23ed1"></p>
+<p>終了をすると obniz が処理待ちに戻ります。</p>
+
                                 
                                 </section>
                             
@@ -699,7 +963,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"内蔵スイッチを LINE Notify に通知しよう","level":"1.9.2","depth":2,"next":{"title":"人感センサーを LINE Notify に通知しよう","level":"1.9.3","depth":2,"path":"07-03-line-notify-and-pir-sensor.md","ref":"07-03-line-notify-and-pir-sensor.md","articles":[]},"previous":{"title":"LINE Notify とは","level":"1.9.1","depth":2,"path":"07-01-line-notify.md","ref":"07-01-line-notify.md","articles":[]},"dir":"neutral"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"07-02-line-notify-and-switch.md","mtime":"2022-12-21T07:37:08.549Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-22T11:42:09.736Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"内蔵スイッチを LINE Notify に通知しよう","level":"1.9.2","depth":2,"next":{"title":"人感センサーを LINE Notify に通知しよう","level":"1.9.3","depth":2,"path":"07-03-line-notify-and-pir-sensor.md","ref":"07-03-line-notify-and-pir-sensor.md","articles":[]},"previous":{"title":"LINE Notify とは","level":"1.9.1","depth":2,"path":"07-01-line-notify.md","ref":"07-01-line-notify.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"07-02-line-notify-and-switch.md","mtime":"2022-12-23T06:35:07.176Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-23T07:30:55.998Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

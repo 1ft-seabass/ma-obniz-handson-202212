@@ -20,12 +20,12 @@
   - [LINE Notify とは](07-01-line-notify.md)
   - [内蔵スイッチを LINE Notify に通知しよう](07-02-line-notify-and-switch.md)
   - [人感センサーを LINE Notify に通知しよう](07-03-line-notify-and-pir-sensor.md)
-  - [距離センサーを LINE Notify に通知しよう](07-04-line-notify-ultra-sonic.md)
-  - 温度センサーを LINE Notify に通知しよう
-- ほかのパーツも動かそう
+  - [超音波距離センサーを LINE Notify に通知しよう](07-04-line-notify-ultra-sonic.md)
+- [ほかのパーツも動かそう](08-other-parts.md)
   - ブザー
   - ボタン
   - LED マトリックス
+  - 温度センサー
 - Airtable にデータを保存しよう
   - Airtable の準備
   - obniz クラウドでコードを動かしてみる
