@@ -5,12 +5,12 @@
         <meta charset="UTF-8">
         <head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# article: https://ogp.me/ns/article#"></head>
         <meta property="og:type" content="article">
-        <meta property="og:url" content="05-switch.html">
+        <meta property="og:url" content="11-tips.html">
         <meta property="og:image" content="https://i.gyazo.com/7e2595fc53dfcc26d2eb00ba30726d63.png">
-        <meta property="og:title" content="[202212 obniz ハンズオン資料] 内蔵スイッチ">
+        <meta property="og:title" content="[202212 obniz ハンズオン資料] いろいろ TIPS">
         <meta property="og:description" content="2022/12 に行われる obniz ハンズオン資料です">
         <meta property="og:locale" content="ja">
-        <title>[202212 obniz ハンズオン資料] 内蔵スイッチ</title>
+        <title>[202212 obniz ハンズオン資料] いろいろ TIPS</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="2022/12 に行われる obniz ハンズオン資料です">
         <meta name="generator" content="HonKit 3.7.4">
@@ -75,10 +75,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="05-01-http-simple.html" />
+    <link rel="next" href="12-discussion.html" />
     
     
-    <link rel="prev" href="04-display.html" />
+    <link rel="prev" href="10-mesh.html" />
     
 
     </head>
@@ -256,7 +256,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.7" data-path="05-switch.html">
+        <li class="chapter " data-level="1.7" data-path="05-switch.html">
             
                 <a href="05-switch.html">
             
@@ -482,7 +482,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.14" data-path="11-tips.html">
+        <li class="chapter active" data-level="1.14" data-path="11-tips.html">
             
                 <a href="11-tips.html">
             
@@ -551,7 +551,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >内蔵スイッチ</a>
+        <a href="." >いろいろ TIPS</a>
     </h1>
 </div>
 
@@ -566,87 +566,42 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="内蔵スイッチを押された状態を取得する"><a name="内蔵スイッチを押された状態を取得する" class="plugin-anchor" href="#内蔵スイッチを押された状態を取得する"><i class="fa fa-link" aria-hidden="true"></i></a>内蔵スイッチを押された状態を取得する</h2>
-<p><img src="https://i.gyazo.com/aecd64d26dfbb7f06f6c1c07ae562f34.jpg" alt="aecd64d26dfbb7f06f6c1c07ae562f34"></p>
-<p>今度は内蔵スイッチを動かしてみましょう。</p>
-<p>ドキュメントは <a href="https://obniz.com/ja/doc/reference/common/switch" target="_blank">https://obniz.com/ja/doc/reference/common/switch</a> です。</p>
-<h2 id="エディタに反映"><a name="エディタに反映" class="plugin-anchor" href="#エディタに反映"><i class="fa fa-link" aria-hidden="true"></i></a>エディタに反映</h2>
-<p>こちらを以前の内容は、すべて選択して消してから、エディタの内容を上書きします。</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://obniz.io/js/jquery-3.2.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello obniz!!!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;obniz-debug&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-
-      <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
-      <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
-      <span class="hljs-comment">// 接続後、ディスプレイに指示を出す</span>
-      obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;[switch]&quot;</span>);
-        <span class="hljs-comment">// ディスプレイ表示</span>
-        obniz.display.clear();
-        obniz.display.print(<span class="hljs-string">&quot;[switch]&quot;</span>);
-        <span class="hljs-comment">// スイッチの動きを検出</span>
-        obniz.switch.onchange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">state</span>) </span>{
-          <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;push&quot;</span>) {
-            <span class="hljs-comment">// 押されたとき</span>
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;push&quot;</span>);
-            <span class="hljs-comment">// ディスプレイ表示</span>
-            obniz.display.clear();
-            obniz.display.print(<span class="hljs-string">&quot;push&quot;</span>);
-          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;right&quot;</span>) {
-            <span class="hljs-comment">// 右に回したとき</span>
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;right&quot;</span>);
-            <span class="hljs-comment">// ディスプレイ表示</span>
-            obniz.display.clear();
-            obniz.display.print(<span class="hljs-string">&quot;right&quot;</span>);
-          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;left&quot;</span>) {
-            <span class="hljs-comment">// 左に回したとき</span>
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;left&quot;</span>);
-            <span class="hljs-comment">// ディスプレイ表示</span>
-            obniz.display.clear();
-            obniz.display.print(<span class="hljs-string">&quot;left&quot;</span>);
-          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;none&quot;</span>) {
-            <span class="hljs-comment">// 何もしていない時</span>
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;none&quot;</span>);
-            <span class="hljs-comment">// ディスプレイ表示</span>
-            obniz.display.clear();
-            obniz.display.print(<span class="hljs-string">&quot;none&quot;</span>);
-          }
-        }
-      }
-
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
-</code></pre>
-<h2 id="動かしてみる"><a name="動かしてみる" class="plugin-anchor" href="#動かしてみる"><i class="fa fa-link" aria-hidden="true"></i></a>動かしてみる</h2>
-<p><img src="https://i.gyazo.com/4b83ca1d7500f2e8a8fffa1292df9f6a.png" alt="4b83ca1d7500f2e8a8fffa1292df9f6a"></p>
-<p>右上の実行ボタンをクリックして、実行してみましょう。</p>
-<p><img src="https://i.gyazo.com/3e178ead36eb2fe65e2e09c6aacbcaf9.png" alt="3e178ead36eb2fe65e2e09c6aacbcaf9"></p>
-<p>Obniz ID を確認して Connect をクリックします。</p>
-<p><img src="https://i.gyazo.com/f20d84a9eac3401c361feb783b0fc4b4.jpg" alt="f20d84a9eac3401c361feb783b0fc4b4"></p>
-<p>起動すると [switch] が表示されます。</p>
-<p><img src="https://i.gyazo.com/70aa123f74c443a34fea69c7e48e3738.jpg" alt="70aa123f74c443a34fea69c7e48e3738"></p>
-<p>左右に指で動かすと left や right が表示されます。</p>
-<p><img src="https://i.gyazo.com/643733dfc408f781dc3013ae6839e29e.jpg" alt="643733dfc408f781dc3013ae6839e29e"></p>
-<p>押すと push が表示されます。</p>
-<p><img src="https://i.gyazo.com/53161bc03ad8f27ed7ec5a54981ba482.jpg" alt="53161bc03ad8f27ed7ec5a54981ba482"></p>
-<p>なにもしないと none が表示されます。</p>
-<h2 id="終了する"><a name="終了する" class="plugin-anchor" href="#終了する"><i class="fa fa-link" aria-hidden="true"></i></a>終了する</h2>
-<p><img src="https://i.gyazo.com/458bed935aa2dbcef07333fb1c676b43.png" alt="458bed935aa2dbcef07333fb1c676b43"></p>
-<p>右上の終了ボタンをクリックします。</p>
-<p><img src="https://i.gyazo.com/0dcad23a2030b258bb62570f6ca23ed1.jpg" alt="0dcad23a2030b258bb62570f6ca23ed1"></p>
-<p>終了をすると obniz が処理待ちに戻ります。</p>
+                                <h2 id="aws-lambda--obniz-連携"><a name="aws-lambda--obniz-連携" class="plugin-anchor" href="#aws-lambda--obniz-連携"><i class="fa fa-link" aria-hidden="true"></i></a>AWS Lambda + obniz 連携</h2>
+<p>AWS Lambda + obniz 連携は公式ドキュメントがあります。</p>
+<ul>
+<li>AWS Lambda: 1関数で1台のobnizを管理する - obniz Docs<ul>
+<li><a href="https://obniz.com/ja/doc/guides/production/aws-lambda-single" target="_blank">https://obniz.com/ja/doc/guides/production/aws-lambda-single</a></li>
+</ul>
+</li>
+<li>AWS LambdaとAPI Gatewayを使う - obniz Docs<ul>
+<li><a href="https://obniz.com/ja/doc/guides/nodejs/aws-lambda" target="_blank">https://obniz.com/ja/doc/guides/nodejs/aws-lambda</a></li>
+</ul>
+</li>
+</ul>
+<p>注意点としては、ブラウザの JavaScript でなく Node.js で組むことになるので、かなり似ているコードで書けますが、違いはあるのでそのあたりを気をつけながら実装していくことになります。</p>
+<h2 id="obniz-とビーコンの連携"><a name="obniz-とビーコンの連携" class="plugin-anchor" href="#obniz-とビーコンの連携"><i class="fa fa-link" aria-hidden="true"></i></a>obniz とビーコンの連携</h2>
+<p>私の方が、いろいろ調べてみました。ぜひご参考ください。</p>
+<ul>
+<li>MAMORIO を BLE ビーコンとして obniz の BLE で検知するメモ – 1ft-seabass.jp.MEMO<ul>
+<li><a href="https://www.1ft-seabass.jp/memo/2022/12/20/obniz-check-mamorio-ble-beacon/" target="_blank">https://www.1ft-seabass.jp/memo/2022/12/20/obniz-check-mamorio-ble-beacon/</a></li>
+</ul>
+</li>
+<li>obniz で BLE ビーコンを試すとき MAMORIO RE が使いやすかったメモ – 1ft-seabass.jp.MEMO<ul>
+<li><a href="https://www.1ft-seabass.jp/memo/2022/12/23/obniz-mamorio-re-very-nice-approach/" target="_blank">https://www.1ft-seabass.jp/memo/2022/12/23/obniz-mamorio-re-very-nice-approach/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="ハッカソン前に一通り試そう"><a name="ハッカソン前に一通り試そう" class="plugin-anchor" href="#ハッカソン前に一通り試そう"><i class="fa fa-link" aria-hidden="true"></i></a>ハッカソン前に一通り試そう</h2>
+<p><img src="https://i.gyazo.com/6fab899c0415c0a1bcb2444bd262664e.png" alt="6fab899c0415c0a1bcb2444bd262664e"></p>
+<p>obniz + MESH 含めて、チーム内の作りたいものに合わせて実装していきますね。</p>
+<p>その時に大切なのは「ハッカソン前に一通り試すこと」です。</p>
+<p>ハッカソン中に試行錯誤をしながら作り切るのは至難の業です。ですので、事前に Slack でのテクニカルメンターへの質問も駆使しつつ事前に自分たちのやりたい仕組みを試しておきましょう。理想を言えば、一つ一つの検証だけでなくだいたいの仕組みをつなげておくことです。</p>
+<p>もちろん obniz + MESH まわりは、私の方が全力でサポートします！がんばりましょー。</p>
+<h2 id="mesh-や-obniz-は自分のモノとわかるようにラベルを貼りましょう"><a name="mesh-や-obniz-は自分のモノとわかるようにラベルを貼りましょう" class="plugin-anchor" href="#mesh-や-obniz-は自分のモノとわかるようにラベルを貼りましょう"><i class="fa fa-link" aria-hidden="true"></i></a>MESH や obniz は自分のモノとわかるようにラベルを貼りましょう</h2>
+<p><img src="https://i.gyazo.com/894de1e36ec3b519d77a3ad986339cc7.jpg" alt="894de1e36ec3b519d77a3ad986339cc7"></p>
+<p>とくに MESH は、同じ会場でみなさんが同時に使うケースがあって、他チームと混ざっちゃう可能性があります。そうなると、タイムロスにつながりかねないので、このようにチーム名でも担当する人の名前でもラベルを貼るのがおススメです。</p>
+<p>私は、よく白いマスキングテープのようなものにボールペンで書いて貼ってます。あとでも剥がしやすいです。</p>
+<p>obniz は電源をつければ ID が書いてあるので、結構分かりますが、それでも全く同じ機材なだけに混乱しやすいので、ラベルを付けるのもいいでしょう。</p>
 
                                 
                                 </section>
@@ -674,12 +629,12 @@
 
             
                 
-                <a href="04-display.html" class="navigation navigation-prev " aria-label="Previous page: 内蔵ディスプレイ">
+                <a href="10-mesh.html" class="navigation navigation-prev " aria-label="Previous page: MESH と連携しよう">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="05-01-http-simple.html" class="navigation navigation-next " aria-label="Next page: シンプルな HTTP アクセスをしてみよう">
+                <a href="12-discussion.html" class="navigation navigation-next " aria-label="Next page: 質疑応答＆ディスカッション">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -690,7 +645,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"内蔵スイッチ","level":"1.7","depth":1,"next":{"title":"シンプルな HTTP アクセスをしてみよう","level":"1.8","depth":1,"path":"05-01-http-simple.md","ref":"05-01-http-simple.md","articles":[]},"previous":{"title":"内蔵ディスプレイ","level":"1.6","depth":1,"path":"04-display.md","ref":"04-display.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"05-switch.md","mtime":"2022-12-21T07:18:50.006Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-25T12:31:48.906Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"いろいろ TIPS","level":"1.14","depth":1,"next":{"title":"質疑応答＆ディスカッション","level":"1.15","depth":1,"path":"12-discussion.md","ref":"12-discussion.md","articles":[]},"previous":{"title":"MESH と連携しよう","level":"1.13","depth":1,"path":"10-mesh.md","ref":"10-mesh.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"11-tips.md","mtime":"2022-12-25T12:22:05.820Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-25T12:31:48.906Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

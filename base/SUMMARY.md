@@ -12,6 +12,7 @@
 - [エディタを動かしてみよう](03-editor.md)
 - [内蔵ディスプレイ](04-display.md)
 - [内蔵スイッチ](05-switch.md)
+- [シンプルな HTTP アクセスをしてみよう](05-01-http-simple.md)
 - スターターキットを動かそう
   - [LED 信号を光らせよう](06-01-led.md)
   - [サーボモーターを動かそう](06-02-servo.md)
@@ -25,9 +26,7 @@
 - Airtable にデータを保存しよう
   - [IFTTT Airtable Applet 準備](09-01-airtable-applet.md)
   - [人感センサーのデータを Airtable に送ってみよう](09-02-pir-sensor-airtable-record.md)
-- MESH と連携しよう
-  - いくつかのデモとコード紹介
-  - 実装時のポイント紹介
-- いろいろ TIPS
-- 質疑応答＆ディスカッション
+- [MESH と連携しよう](10-mesh.md)
+- [いろいろ TIPS](11-tips.md)
+- [質疑応答＆ディスカッション](12-discussion.md)
 - おわりに

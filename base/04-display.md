@@ -34,6 +34,8 @@
         obniz.display.clear();
         // ディスプレイに文字を表示
         obniz.display.print("Hello obniz!!!");
+        // コンソールにメッセージ（デバッグ用）
+        console.log("Hello obniz!!!");
       }
       
     </script>
@@ -58,6 +60,27 @@ Obniz ID を確認して Connect をクリックします。
 <img width="1228" alt="2022-09-15 14.26.05.jpg (217.0 kB)" src="https://img.esa.io/uploads/production/attachments/3062/2022/09/15/8131/60b69425-dbc2-48e8-b58b-e8122be3ff01.jpg">
 
 このようにディスプレイに文字が表示されます。
+
+## コンソールを確認する
+
+obniz クラウドでは、JavaScript でデバッグログを出力する console.log を使ってデバッグできます。
+
+```js
+        // コンソールにメッセージ（デバッグ用）
+        console.log("Hello obniz!!!");
+```
+
+今回はディスプレイを表示後にこちらのコードでデバッグログを表示しています。
+
+![aef24ba380b8d896700fb445c769a4df](https://i.gyazo.com/aef24ba380b8d896700fb445c769a4df.png)
+
+このデバッグログは、こちらの Show console logs でから見ることで出来るのでクリックして開いてみましょう。
+
+![61a6ca001333227271badcf5d8c91e31](https://i.gyazo.com/61a6ca001333227271badcf5d8c91e31.png)
+
+このように、実行後に出力されたデバッグログが確認できます。
+
+このあといろいろ動かすときも、デバッグログは使うので、確認できるようにしておきましょう。
 
 ## 終了する
 

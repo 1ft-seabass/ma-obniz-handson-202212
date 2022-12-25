@@ -5,12 +5,12 @@
         <meta charset="UTF-8">
         <head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb# article: https://ogp.me/ns/article#"></head>
         <meta property="og:type" content="article">
-        <meta property="og:url" content="05-switch.html">
+        <meta property="og:url" content="05-01-http-simple.html">
         <meta property="og:image" content="https://i.gyazo.com/7e2595fc53dfcc26d2eb00ba30726d63.png">
-        <meta property="og:title" content="[202212 obniz ハンズオン資料] 内蔵スイッチ">
+        <meta property="og:title" content="[202212 obniz ハンズオン資料] シンプルな HTTP アクセスをしてみよう">
         <meta property="og:description" content="2022/12 に行われる obniz ハンズオン資料です">
         <meta property="og:locale" content="ja">
-        <title>[202212 obniz ハンズオン資料] 内蔵スイッチ</title>
+        <title>[202212 obniz ハンズオン資料] シンプルな HTTP アクセスをしてみよう</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="2022/12 に行われる obniz ハンズオン資料です">
         <meta name="generator" content="HonKit 3.7.4">
@@ -75,10 +75,8 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="05-01-http-simple.html" />
     
-    
-    <link rel="prev" href="04-display.html" />
+    <link rel="prev" href="05-switch.html" />
     
 
     </head>
@@ -256,7 +254,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.7" data-path="05-switch.html">
+        <li class="chapter " data-level="1.7" data-path="05-switch.html">
             
                 <a href="05-switch.html">
             
@@ -269,7 +267,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8" data-path="05-01-http-simple.html">
+        <li class="chapter active" data-level="1.8" data-path="05-01-http-simple.html">
             
                 <a href="05-01-http-simple.html">
             
@@ -551,7 +549,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >内蔵スイッチ</a>
+        <a href="." >シンプルな HTTP アクセスをしてみよう</a>
     </h1>
 </div>
 
@@ -566,12 +564,35 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="内蔵スイッチを押された状態を取得する"><a name="内蔵スイッチを押された状態を取得する" class="plugin-anchor" href="#内蔵スイッチを押された状態を取得する"><i class="fa fa-link" aria-hidden="true"></i></a>内蔵スイッチを押された状態を取得する</h2>
-<p><img src="https://i.gyazo.com/aecd64d26dfbb7f06f6c1c07ae562f34.jpg" alt="aecd64d26dfbb7f06f6c1c07ae562f34"></p>
-<p>今度は内蔵スイッチを動かしてみましょう。</p>
-<p>ドキュメントは <a href="https://obniz.com/ja/doc/reference/common/switch" target="_blank">https://obniz.com/ja/doc/reference/common/switch</a> です。</p>
-<h2 id="エディタに反映"><a name="エディタに反映" class="plugin-anchor" href="#エディタに反映"><i class="fa fa-link" aria-hidden="true"></i></a>エディタに反映</h2>
-<p>こちらを以前の内容は、すべて選択して消してから、エディタの内容を上書きします。</p>
+                                <h1 id="シンプルな-http-アクセスをしてみよう"><a name="シンプルな-http-アクセスをしてみよう" class="plugin-anchor" href="#シンプルな-http-アクセスをしてみよう"><i class="fa fa-link" aria-hidden="true"></i></a>シンプルな HTTP アクセスをしてみよう</h1>
+<p>obniz を起動するだけで、テストで作ったサーバーにメッセージを送ってみます。</p>
+<p><img src="https://i.gyazo.com/1ed7bfa0bc832f45f079eeca20177ad4.png" alt="1ed7bfa0bc832f45f079eeca20177ad4"></p>
+<p>このようにテストサーバーでは、送られたメッセージが表示されます。</p>
+<h2 id="今回のテストサーバーは-obnizcom-を許可している"><a name="今回のテストサーバーは-obnizcom-を許可している" class="plugin-anchor" href="#今回のテストサーバーは-obnizcom-を許可している"><i class="fa fa-link" aria-hidden="true"></i></a>今回のテストサーバーは obniz.com を許可している</h2>
+<p>obniz クラウドのようなブラウザからの実行は、開発環境を準備することなくブラウザだけで実行できて使いやすいのですが、クロスドメイン制約（CORS）という制約で、外部へのデータのやりとりに苦労することがあります。</p>
+<p><img src="https://i.gyazo.com/d1ba3993931343c5c81072a2cb131102.png" alt="d1ba3993931343c5c81072a2cb131102"></p>
+<p>obniz クラウドのようなブラウザからのアクセスの場合、通常、受け手のサーバー側が未設定でロスドメイン制約の対応をしてないとき（obniz.com ドメインからのアクセスを許可していないとき）はアクセスすることができません。</p>
+<p><img src="https://i.gyazo.com/f8c74d2285eafd721c119a9e40ffcf31.png" alt="f8c74d2285eafd721c119a9e40ffcf31"></p>
+<p>今回のテストサーバーは、obniz.com の設定が済んでいます。</p>
+<p><a href="https://developer.mozilla.org/ja/docs/Web/HTTP/CORS" target="_blank">オリジン間リソース共有 (CORS) - HTTP | MDN</a> をあたりを参考に、サーバー側で以下の設定をしています。</p>
+<ul>
+<li>Access-Control-Allow-Origin<ul>
+<li><code>*</code> で全開放するか、あるいは <code>http://obniz.com</code> だけで obniz.com だけ開放</li>
+</ul>
+</li>
+<li>Access-Control-Request-Method<ul>
+<li>GET,PUT,POST,DELETE</li>
+</ul>
+</li>
+<li>Access-Control-Allow-Headers<ul>
+<li>Content-Type</li>
+</ul>
+</li>
+</ul>
+<p>もし、みなさんが連携時に Lambda のサーバレスの仕組みや、自作サーバーで行う場合は、このあたりの設定が必要ですので、チーム内で連携する場合は意識しておきましょう。</p>
+<h2 id="今回のプログラム"><a name="今回のプログラム" class="plugin-anchor" href="#今回のプログラム"><i class="fa fa-link" aria-hidden="true"></i></a>今回のプログラム</h2>
+<p>ということで、心おきなくデータを送ってみましょう。</p>
+<p>以前の内容をすべて選択して消してから、こちらをエディタの内容を上書きします。</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
@@ -581,7 +602,7 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello obniz!!!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>fetch<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;obniz-debug&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
@@ -589,40 +610,33 @@
 
       <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
       <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
-      <span class="hljs-comment">// 接続後、ディスプレイに指示を出す</span>
+
+      <span class="hljs-comment">// 接続後、メッセージを送る</span>
       obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;[switch]&quot;</span>);
-        <span class="hljs-comment">// ディスプレイ表示</span>
         obniz.display.clear();
-        obniz.display.print(<span class="hljs-string">&quot;[switch]&quot;</span>);
-        <span class="hljs-comment">// スイッチの動きを検出</span>
-        obniz.switch.onchange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">state</span>) </span>{
-          <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;push&quot;</span>) {
-            <span class="hljs-comment">// 押されたとき</span>
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;push&quot;</span>);
-            <span class="hljs-comment">// ディスプレイ表示</span>
-            obniz.display.clear();
-            obniz.display.print(<span class="hljs-string">&quot;push&quot;</span>);
-          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;right&quot;</span>) {
-            <span class="hljs-comment">// 右に回したとき</span>
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;right&quot;</span>);
-            <span class="hljs-comment">// ディスプレイ表示</span>
-            obniz.display.clear();
-            obniz.display.print(<span class="hljs-string">&quot;right&quot;</span>);
-          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;left&quot;</span>) {
-            <span class="hljs-comment">// 左に回したとき</span>
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;left&quot;</span>);
-            <span class="hljs-comment">// ディスプレイ表示</span>
-            obniz.display.clear();
-            obniz.display.print(<span class="hljs-string">&quot;left&quot;</span>);
-          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (state === <span class="hljs-string">&quot;none&quot;</span>) {
-            <span class="hljs-comment">// 何もしていない時</span>
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;none&quot;</span>);
-            <span class="hljs-comment">// ディスプレイ表示</span>
-            obniz.display.clear();
-            obniz.display.print(<span class="hljs-string">&quot;none&quot;</span>);
-          }
-        }
+        obniz.display.print(<span class="hljs-string">&quot;[fetch]&quot;</span>);
+
+        <span class="hljs-comment">// 設定</span>
+        <span class="hljs-keyword">const</span> config = {
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&apos;POST&apos;</span>,
+            <span class="hljs-attr">headers</span>: {
+                <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;application/json&apos;</span>
+            },
+            <span class="hljs-attr">body</span>:<span class="hljs-built_in">JSON</span>.stringify({
+              <span class="hljs-attr">message</span>:<span class="hljs-string">&quot;やっほー！ noname です！&quot;</span>
+            })
+        };
+        <span class="hljs-comment">// テストサーバーにメッセージを送る</span>
+        <span class="hljs-keyword">const</span> FETCH_URL = <span class="hljs-string">`https://app-1ft-iot-test-server.herokuapp.com/api/test/message`</span>;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;FETCH_URL&quot;</span>);
+        <span class="hljs-built_in">console</span>.log(FETCH_URL);
+        <span class="hljs-comment">// 送信</span>
+        <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> fetch(FETCH_URL, config);
+        <span class="hljs-comment">// 受信した JSON データ</span>
+        <span class="hljs-keyword">const</span> json = <span class="hljs-keyword">await</span> response.json();
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;OK&quot;</span>);
+        <span class="hljs-built_in">console</span>.log(json);
+
       }
 
     </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -630,23 +644,37 @@
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
 <h2 id="動かしてみる"><a name="動かしてみる" class="plugin-anchor" href="#動かしてみる"><i class="fa fa-link" aria-hidden="true"></i></a>動かしてみる</h2>
-<p><img src="https://i.gyazo.com/4b83ca1d7500f2e8a8fffa1292df9f6a.png" alt="4b83ca1d7500f2e8a8fffa1292df9f6a"></p>
-<p>右上の実行ボタンをクリックして、実行してみましょう。</p>
-<p><img src="https://i.gyazo.com/3e178ead36eb2fe65e2e09c6aacbcaf9.png" alt="3e178ead36eb2fe65e2e09c6aacbcaf9"></p>
-<p>Obniz ID を確認して Connect をクリックします。</p>
-<p><img src="https://i.gyazo.com/f20d84a9eac3401c361feb783b0fc4b4.jpg" alt="f20d84a9eac3401c361feb783b0fc4b4"></p>
-<p>起動すると [switch] が表示されます。</p>
-<p><img src="https://i.gyazo.com/70aa123f74c443a34fea69c7e48e3738.jpg" alt="70aa123f74c443a34fea69c7e48e3738"></p>
-<p>左右に指で動かすと left や right が表示されます。</p>
-<p><img src="https://i.gyazo.com/643733dfc408f781dc3013ae6839e29e.jpg" alt="643733dfc408f781dc3013ae6839e29e"></p>
-<p>押すと push が表示されます。</p>
-<p><img src="https://i.gyazo.com/53161bc03ad8f27ed7ec5a54981ba482.jpg" alt="53161bc03ad8f27ed7ec5a54981ba482"></p>
-<p>なにもしないと none が表示されます。</p>
-<h2 id="終了する"><a name="終了する" class="plugin-anchor" href="#終了する"><i class="fa fa-link" aria-hidden="true"></i></a>終了する</h2>
-<p><img src="https://i.gyazo.com/458bed935aa2dbcef07333fb1c676b43.png" alt="458bed935aa2dbcef07333fb1c676b43"></p>
-<p>右上の終了ボタンをクリックします。</p>
-<p><img src="https://i.gyazo.com/0dcad23a2030b258bb62570f6ca23ed1.jpg" alt="0dcad23a2030b258bb62570f6ca23ed1"></p>
-<p>終了をすると obniz が処理待ちに戻ります。</p>
+<p>こちらを実行してみます。スイッチを押すようなアクションは必要なく起動して obniz がつながった瞬間にテストサーバーへメッセージを一度だけとばします。</p>
+<p><img src="https://i.gyazo.com/c2725c5398b89d865b845c958bb2aad0.png" alt="c2725c5398b89d865b845c958bb2aad0"></p>
+<p>起動するとコンソールでは、プログラム内に書かれた console.log のメッセージが出て OK となり、メッセージ送信が成功します。</p>
+<p><img src="https://i.gyazo.com/1ed7bfa0bc832f45f079eeca20177ad4.png" alt="1ed7bfa0bc832f45f079eeca20177ad4"></p>
+<p>このようにテストサーバーでは、送られたメッセージが表示されます。</p>
+<h2 id="メッセージを変えてみましょう"><a name="メッセージを変えてみましょう" class="plugin-anchor" href="#メッセージを変えてみましょう"><i class="fa fa-link" aria-hidden="true"></i></a>メッセージを変えてみましょう</h2>
+<pre><code class="lang-js">        <span class="hljs-keyword">const</span> config = {
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&apos;POST&apos;</span>,
+            <span class="hljs-attr">headers</span>: {
+                <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;application/json&apos;</span>
+            },
+            <span class="hljs-attr">body</span>:<span class="hljs-built_in">JSON</span>.stringify({
+              <span class="hljs-attr">message</span>:<span class="hljs-string">&quot;やっほー！ noname です！&quot;</span>
+            })
+        };
+</code></pre>
+<p>こちらが、送るデータを定義している部分です。特に body の</p>
+<pre><code>            body:JSON.stringify({
+              message:&quot;やっほー！ noname です！&quot;
+            })
+</code></pre><p>こちらの <code>やっほー！ noname です！</code> が送っているメッセージです。こちらを自分の名前に変えてみて、送るデータを変えてみましょう！</p>
+<h2 id="http-post-リクエストは-fetch-関数"><a name="http-post-リクエストは-fetch-関数" class="plugin-anchor" href="#http-post-リクエストは-fetch-関数"><i class="fa fa-link" aria-hidden="true"></i></a>HTTP POST リクエストは fetch 関数</h2>
+<p><img src="https://i.gyazo.com/80df55739b7fd5866e67160c4ca34fbc.png" alt="80df55739b7fd5866e67160c4ca34fbc"></p>
+<p>obniz 側からテストサーバーへは POST リクエストをブラウザに標準で搭載されている fetch 関数を使っています。</p>
+<p>フェッチ API の詳しい使い方は、以下を参照ください。</p>
+<ul>
+<li>フェッチ API の使用 - Web API | MDN<ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">https://developer.mozilla.org/ja/docs/Web/API/Fetch_API/Using_Fetch</a></li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -674,14 +702,10 @@
 
             
                 
-                <a href="04-display.html" class="navigation navigation-prev " aria-label="Previous page: 内蔵ディスプレイ">
+                <a href="05-switch.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 内蔵スイッチ">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="05-01-http-simple.html" class="navigation navigation-next " aria-label="Next page: シンプルな HTTP アクセスをしてみよう">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -690,7 +714,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"内蔵スイッチ","level":"1.7","depth":1,"next":{"title":"シンプルな HTTP アクセスをしてみよう","level":"1.8","depth":1,"path":"05-01-http-simple.md","ref":"05-01-http-simple.md","articles":[]},"previous":{"title":"内蔵ディスプレイ","level":"1.6","depth":1,"path":"04-display.md","ref":"04-display.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"05-switch.md","mtime":"2022-12-21T07:18:50.006Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-25T12:31:48.906Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"シンプルな HTTP アクセスをしてみよう","level":"1.8","depth":1,"next":{"title":"スターターキットを動かそう","level":"1.9","depth":1,"ref":"","articles":[{"title":"LED 信号を光らせよう","level":"1.9.1","depth":2,"path":"06-01-led.md","ref":"06-01-led.md","articles":[]},{"title":"サーボモーターを動かそう","level":"1.9.2","depth":2,"path":"06-02-servo.md","ref":"06-02-servo.md","articles":[]},{"title":"超音波距離センサーの距離を表示しよう","level":"1.9.3","depth":2,"path":"06-03-ultra-sonic.md","ref":"06-03-ultra-sonic.md","articles":[]}]},"previous":{"title":"内蔵スイッチ","level":"1.7","depth":1,"path":"05-switch.md","ref":"05-switch.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"05-01-http-simple.md","mtime":"2022-12-25T11:57:06.427Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-25T12:31:48.906Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

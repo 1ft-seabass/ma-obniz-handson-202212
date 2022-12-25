@@ -178,3 +178,9 @@
 ![0dcad23a2030b258bb62570f6ca23ed1](https://i.gyazo.com/0dcad23a2030b258bb62570f6ca23ed1.jpg)
 
 終了をすると obniz が処理待ちに戻ります。
+
+## TIPS
+
+![d35d834c4ecad8cfba42d6ab3be97bc4](https://i.gyazo.com/d35d834c4ecad8cfba42d6ab3be97bc4.png)
+
+人感センサーは、反射板や金属物で遮蔽できます。センサー部分の検知範囲が広い場合は、アルミホイルで覆って必要な部分を爪楊枝などで穴をあけたり、粘土のようなもので検知したい範囲以外は覆ってしまうようなテクニックがあります。
