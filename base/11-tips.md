@@ -1,5 +1,7 @@
 ## AWS Lambda + obniz 連携
 
+![c5edc95c3551a6796e763a425668a4ff](https://i.gyazo.com/c5edc95c3551a6796e763a425668a4ff.png)
+
 AWS Lambda + obniz 連携は公式ドキュメントがあります。
 
 - AWS Lambda: 1関数で1台のobnizを管理する - obniz Docs
@@ -9,7 +11,12 @@ AWS Lambda + obniz 連携は公式ドキュメントがあります。
 
 注意点としては、ブラウザの JavaScript でなく Node.js で組むことになるので、かなり似ているコードで書けますが、違いはあるのでそのあたりを気をつけながら実装していくことになります。
 
+- Node.js x obniz - obniz Docs
+    - https://obniz.com/ja/doc/guides/nodejs/
+
 ## obniz とビーコンの連携
+
+![f546dc0be1633a3545d74cbfca861c6f](https://i.gyazo.com/f546dc0be1633a3545d74cbfca861c6f.png)
 
 私の方が、いろいろ調べてみました。ぜひご参考ください。
 

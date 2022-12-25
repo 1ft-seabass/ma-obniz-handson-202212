@@ -8,7 +8,7 @@
   - [IFTTT 準備](00-preparation/03-01-ifttt.md)
   - [IFTTT LINE Notify Applet 準備](00-preparation/03-02-line-notify-applet.md)
 - [はじめに](01-introduction.md)
-- [リファレンスから動かしてみよう](02-reference)
+- [リファレンスから動かしてみよう](02-reference.md)
 - [エディタを動かしてみよう](03-editor.md)
 - [内蔵ディスプレイ](04-display.md)
 - [内蔵スイッチ](05-switch.md)
