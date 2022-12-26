@@ -65,7 +65,9 @@ Create a new record のページに移動します。Airtable account が自分�
 - Table
     - `Table 1`
 - Record content
-    - > ::airtable::Name::{{Value1}}
+```
+::airtable::Name::{{Value1}}
+```
 
 と設定して、設定できたら Create action をクリックします。
 
