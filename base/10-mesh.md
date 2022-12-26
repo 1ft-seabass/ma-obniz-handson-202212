@@ -253,6 +253,105 @@ shaked は振られた時、tapped はトンっと叩かれた時、orientation 
 
 振ってみると LINE Notify にメッセージが送られます。
 
+## 余裕があれば、人感センサブロックでデモしてみます
+
+<img width="1433" alt="2022-12-26 10.43.58.jpg (171.6 kB)" src="https://img.esa.io/uploads/production/attachments/3062/2022/12/26/8131/13dd4310-6df7-42f7-a2bc-6d7b92c27fd5.jpg">
+
+人感センサブロックも動かしてみます。
+
+人感センサのドキュメントは https://obniz.com/ja/sdk/parts/MESH_100MD/README.md です。ALWAY モードのサンプルは、すごくチェック頻度が高いので、通常の getSensorDataWait のセンサー取得を使って obniz.onloop で定期実行します。
+
+以前の内容は、すべて選択して消してから、エディタの内容をこちらで上書きします。
+
+```html
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://obniz.io/js/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/obniz@3.24.0/obniz.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>MESH Move</h1>
+    
+    <script>
+
+      // 今回の obniz を指示するための設定
+      const obniz = new Obniz("OBNIZ_ID_HERE");
+
+      // 接続後、MESH と接続
+      obniz.onconnect = async function () {
+        obniz.display.clear();
+        obniz.display.print("[MESH Motion]");
+
+        const MESH_100MD = Obniz.getPartsClass('MESH_100MD');
+
+        // BLE の初期化待ちコードを加えます
+        await obniz.ble.initWait();
+
+        // サンプルコード
+        obniz.ble.scan.onfind = async (peripheral) => {
+          if (!MESH_100MD.isMESHblock(peripheral)) {
+              return;
+          }
+          console.log('found');
+          obniz.display.print('found');
+
+          // Create an instance
+          const motionBlock = new MESH_100MD(peripheral);
+
+          // Connect to the Motion block
+          await motionBlock.connectWait();
+          console.log(`connected: ${motionBlock.peripheral.localName}`);
+          obniz.display.print('connected');
+          
+          obniz.onloop = async () => {
+            // Get sensor data
+            const motionState = await motionBlock.getSensorDataWait();
+            switch (motionState) {
+                case MESH_100MD.MotionState.DETECTED: {
+                  // 認識した時だけ
+                    console.log('人感センサが認識しました！');
+                    break;
+                }
+                case MESH_100MD.MotionState.NOT_DETECTED: {
+                    // console.log('Not Detected.');
+                    break;
+                }
+                default: {
+                    console.log('Starting up...');
+                    break;
+                }
+            }
+            // 1秒待って定期実行
+            await obniz.wait(1000);
+          }
+          
+        };
+
+        // スキャンの開始待ちのコードを加えます
+        await obniz.ble.scan.startWait();
+      }
+      
+    </script>
+  </body>
+```
+
+コピーアンドペーストできたら、MESH を起動してからこちらを実行してみます。
+
+![10b756a549c7db3f8f0018ed4366b4e0](https://i.gyazo.com/10b756a549c7db3f8f0018ed4366b4e0.jpg)
+
+ディスプレイが found と connected が出たら MESH と接続できています。
+
+![ef7b8bb6ac0e3b4ad6c3dd38c528c62d](https://i.gyazo.com/ef7b8bb6ac0e3b4ad6c3dd38c528c62d.jpg)
+
+センサ部分に手をかざしてみましょう。
+
+![3cf7050444e12b09c9952ae05d700e45](https://i.gyazo.com/3cf7050444e12b09c9952ae05d700e45.png)
+
+コンソールで「人感センサが認識しました！」とログが出てきます。
+
 ## Uncaught ObnizBleHciStateError: Connection Failed to be Established / Synchronization Timeout
 
 これが出たら、一度 obniz 実行を止めてつなぎなおすとうまくいきます。
@@ -260,7 +359,6 @@ shaked は振られた時、tapped はトンっと叩かれた時、orientation 
 ## Uncaught MESHJsBlockVersionError: Please UPDATE the block software to version 1.2.5 or higher. (Current block software version is 1.1.5 .)
 
 このようなエラーが出てきたら、MESH のバージョンアップが必要です。[こちらの記事](https://www.1ft-seabass.jp/memo/2022/12/06/mesh-version-up-meets-obniz-first-contact/) を参考にアップデートしましょう。
-
 
 ## IFTTT と MESH アプリの連携もいけます
 

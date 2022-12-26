@@ -778,6 +778,91 @@
 <p>こちらを実行してみて、ディスプレイが found と connected が出たら MESH と接続できています。</p>
 <p><img src="https://i.gyazo.com/53f8c51c13b4ba0786cb12e296e6ff4b.png" alt="53f8c51c13b4ba0786cb12e296e6ff4b"></p>
 <p>振ってみると LINE Notify にメッセージが送られます。</p>
+<h2 id="余裕があれば、人感センサブロックでデモしてみます"><a name="余裕があれば、人感センサブロックでデモしてみます" class="plugin-anchor" href="#余裕があれば、人感センサブロックでデモしてみます"><i class="fa fa-link" aria-hidden="true"></i></a>余裕があれば、人感センサブロックでデモしてみます</h2>
+<p><img width="1433" alt="2022-12-26 10.43.58.jpg (171.6 kB)" src="https://img.esa.io/uploads/production/attachments/3062/2022/12/26/8131/13dd4310-6df7-42f7-a2bc-6d7b92c27fd5.jpg"></p>
+<p>人感センサブロックも動かしてみます。</p>
+<p>人感センサのドキュメントは <a href="https://obniz.com/ja/sdk/parts/MESH_100MD/README.md" target="_blank">https://obniz.com/ja/sdk/parts/MESH_100MD/README.md</a> です。ALWAY モードのサンプルは、すごくチェック頻度が高いので、通常の getSensorDataWait のセンサー取得を使って obniz.onloop で定期実行します。</p>
+<p>以前の内容は、すべて選択して消してから、エディタの内容をこちらで上書きします。</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://obniz.io/js/jquery-3.2.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>MESH Move<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+
+      <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
+      <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
+
+      <span class="hljs-comment">// 接続後、MESH と接続</span>
+      obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        obniz.display.clear();
+        obniz.display.print(<span class="hljs-string">&quot;[MESH Motion]&quot;</span>);
+
+        <span class="hljs-keyword">const</span> MESH_100MD = Obniz.getPartsClass(<span class="hljs-string">&apos;MESH_100MD&apos;</span>);
+
+        <span class="hljs-comment">// BLE の初期化待ちコードを加えます</span>
+        <span class="hljs-keyword">await</span> obniz.ble.initWait();
+
+        <span class="hljs-comment">// サンプルコード</span>
+        obniz.ble.scan.onfind = <span class="hljs-keyword">async</span> (peripheral) =&gt; {
+          <span class="hljs-keyword">if</span> (!MESH_100MD.isMESHblock(peripheral)) {
+              <span class="hljs-keyword">return</span>;
+          }
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;found&apos;</span>);
+          obniz.display.print(<span class="hljs-string">&apos;found&apos;</span>);
+
+          <span class="hljs-comment">// Create an instance</span>
+          <span class="hljs-keyword">const</span> motionBlock = <span class="hljs-keyword">new</span> MESH_100MD(peripheral);
+
+          <span class="hljs-comment">// Connect to the Motion block</span>
+          <span class="hljs-keyword">await</span> motionBlock.connectWait();
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`connected: <span class="hljs-subst">${motionBlock.peripheral.localName}</span>`</span>);
+          obniz.display.print(<span class="hljs-string">&apos;connected&apos;</span>);
+
+          obniz.onloop = <span class="hljs-keyword">async</span> () =&gt; {
+            <span class="hljs-comment">// Get sensor data</span>
+            <span class="hljs-keyword">const</span> motionState = <span class="hljs-keyword">await</span> motionBlock.getSensorDataWait();
+            <span class="hljs-keyword">switch</span> (motionState) {
+                <span class="hljs-keyword">case</span> MESH_100MD.MotionState.DETECTED: {
+                  <span class="hljs-comment">// 認識した時だけ</span>
+                    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;人感センサが認識しました！&apos;</span>);
+                    <span class="hljs-keyword">break</span>;
+                }
+                <span class="hljs-keyword">case</span> MESH_100MD.MotionState.NOT_DETECTED: {
+                    <span class="hljs-comment">// console.log(&apos;Not Detected.&apos;);</span>
+                    <span class="hljs-keyword">break</span>;
+                }
+                <span class="hljs-attr">default</span>: {
+                    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Starting up...&apos;</span>);
+                    <span class="hljs-keyword">break</span>;
+                }
+            }
+            <span class="hljs-comment">// 1秒待って定期実行</span>
+            <span class="hljs-keyword">await</span> obniz.wait(<span class="hljs-number">1000</span>);
+          }
+
+        };
+
+        <span class="hljs-comment">// スキャンの開始待ちのコードを加えます</span>
+        <span class="hljs-keyword">await</span> obniz.ble.scan.startWait();
+      }
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</code></pre>
+<p>コピーアンドペーストできたら、MESH を起動してからこちらを実行してみます。</p>
+<p><img src="https://i.gyazo.com/10b756a549c7db3f8f0018ed4366b4e0.jpg" alt="10b756a549c7db3f8f0018ed4366b4e0"></p>
+<p>ディスプレイが found と connected が出たら MESH と接続できています。</p>
+<p><img src="https://i.gyazo.com/ef7b8bb6ac0e3b4ad6c3dd38c528c62d.jpg" alt="ef7b8bb6ac0e3b4ad6c3dd38c528c62d"></p>
+<p>センサ部分に手をかざしてみましょう。</p>
+<p><img src="https://i.gyazo.com/3cf7050444e12b09c9952ae05d700e45.png" alt="3cf7050444e12b09c9952ae05d700e45"></p>
+<p>コンソールで「人感センサが認識しました！」とログが出てきます。</p>
 <h2 id="uncaught-obnizblehcistateerror-connection-failed-to-be-established--synchronization-timeout"><a name="uncaught-obnizblehcistateerror-connection-failed-to-be-established--synchronization-timeout" class="plugin-anchor" href="#uncaught-obnizblehcistateerror-connection-failed-to-be-established--synchronization-timeout"><i class="fa fa-link" aria-hidden="true"></i></a>Uncaught ObnizBleHciStateError: Connection Failed to be Established / Synchronization Timeout</h2>
 <p>これが出たら、一度 obniz 実行を止めてつなぎなおすとうまくいきます。</p>
 <h2 id="uncaught-meshjsblockversionerror-please-update-the-block-software-to-version-125-or-higher-current-block-software-version-is-115-"><a name="uncaught-meshjsblockversionerror-please-update-the-block-software-to-version-125-or-higher-current-block-software-version-is-115-" class="plugin-anchor" href="#uncaught-meshjsblockversionerror-please-update-the-block-software-to-version-125-or-higher-current-block-software-version-is-115-"><i class="fa fa-link" aria-hidden="true"></i></a>Uncaught MESHJsBlockVersionError: Please UPDATE the block software to version 1.2.5 or higher. (Current block software version is 1.1.5 .)</h2>
@@ -842,7 +927,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"MESH と連携しよう","level":"1.13","depth":1,"next":{"title":"いろいろ TIPS","level":"1.14","depth":1,"path":"11-tips.md","ref":"11-tips.md","articles":[]},"previous":{"title":"人感センサーのデータを Airtable に送ってみよう","level":"1.12.2","depth":2,"path":"09-02-pir-sensor-airtable-record.md","ref":"09-02-pir-sensor-airtable-record.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"10-mesh.md","mtime":"2022-12-25T11:19:39.617Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-26T01:19:12.553Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"MESH と連携しよう","level":"1.13","depth":1,"next":{"title":"いろいろ TIPS","level":"1.14","depth":1,"path":"11-tips.md","ref":"11-tips.md","articles":[]},"previous":{"title":"人感センサーのデータを Airtable に送ってみよう","level":"1.12.2","depth":2,"path":"09-02-pir-sensor-airtable-record.md","ref":"09-02-pir-sensor-airtable-record.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"10-mesh.md","mtime":"2022-12-26T01:47:52.289Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-26T01:48:10.780Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
