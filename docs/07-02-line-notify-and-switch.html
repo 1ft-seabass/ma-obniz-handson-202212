@@ -679,6 +679,24 @@
 <p>こちらを実行してみると、LINE Notify に「シンプルに送ってみました！」というメッセージが送られます。</p>
 <p><img src="https://i.gyazo.com/2ce5be23e2d71ab0891d120cafec9abe.png" alt="2ce5be23e2d71ab0891d120cafec9abe"></p>
 <p>スマホの LINE アプリケーションを見てみると、今回送った LINE Notify にメッセージがこのように送られています！</p>
+<h2 id="今回の-fetch-は-get-リクエストで-no-cors-モード"><a name="今回の-fetch-は-get-リクエストで-no-cors-モード" class="plugin-anchor" href="#今回の-fetch-は-get-リクエストで-no-cors-モード"><i class="fa fa-link" aria-hidden="true"></i></a>今回の fetch は GET リクエストで no-cors モード</h2>
+<pre><code class="lang-js">        <span class="hljs-comment">// 設定</span>
+        <span class="hljs-keyword">const</span> config = {
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&apos;GET&apos;</span>,
+            <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;no-cors&apos;</span>,
+            <span class="hljs-attr">headers</span>: {
+                <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;application/x-www-form-urlencoded&apos;</span>
+            }
+        };
+</code></pre>
+<p>IFTTT の Webhook は GET リクエストで application/x-www-form-urlencoded 形式でデータを受け付けることができるため、今回はこのようにしています。また、mode を no-cors を CORS に影響されないデータ送信方法なので、そう設定しています。</p>
+<p>no-cors 送信は、データを送るだけなら問題なくできるので、今回は使えます。もし、データの受信も含めたやり取りをしたい場合は、前述の通り自前のサーバー側で CORS を許可しましょう。</p>
+<ul>
+<li>fetchのmodeについて - Qiita<ul>
+<li><a href="https://qiita.com/ryokkkke/items/79f1d338e141d4b7201b" target="_blank">https://qiita.com/ryokkkke/items/79f1d338e141d4b7201b</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="メッセージを変更してみましょう"><a name="メッセージを変更してみましょう" class="plugin-anchor" href="#メッセージを変更してみましょう"><i class="fa fa-link" aria-hidden="true"></i></a>メッセージを変更してみましょう</h2>
 <p>IFTTT Webhook には value1 value2 value3 という 3 つのメッセージを受け付けています。</p>
 <pre><code>        // メッセージ内容を URLSearchParams で作る
@@ -873,7 +891,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"内蔵スイッチを LINE Notify に通知しよう","level":"1.10.2","depth":2,"next":{"title":"人感センサーを LINE Notify に通知しよう","level":"1.10.3","depth":2,"path":"07-03-line-notify-and-pir-sensor.md","ref":"07-03-line-notify-and-pir-sensor.md","articles":[]},"previous":{"title":"LINE Notify とは","level":"1.10.1","depth":2,"path":"07-01-line-notify.md","ref":"07-01-line-notify.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"07-02-line-notify-and-switch.md","mtime":"2022-12-23T06:35:07.176Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-26T01:55:44.912Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"内蔵スイッチを LINE Notify に通知しよう","level":"1.10.2","depth":2,"next":{"title":"人感センサーを LINE Notify に通知しよう","level":"1.10.3","depth":2,"path":"07-03-line-notify-and-pir-sensor.md","ref":"07-03-line-notify-and-pir-sensor.md","articles":[]},"previous":{"title":"LINE Notify とは","level":"1.10.1","depth":2,"path":"07-01-line-notify.md","ref":"07-01-line-notify.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"07-02-line-notify-and-switch.md","mtime":"2022-12-26T03:23:26.848Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-26T03:45:08.706Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

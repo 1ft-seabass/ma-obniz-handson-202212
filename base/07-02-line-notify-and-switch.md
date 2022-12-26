@@ -132,6 +132,26 @@ CORS を obniz.com に解放を狙い撃ちで行うのが大変なときは、�
 
 スマホの LINE アプリケーションを見てみると、今回送った LINE Notify にメッセージがこのように送られています！
 
+## 今回の fetch は GET リクエストで no-cors モード
+
+```js
+        // 設定
+        const config = {
+            method: 'GET',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        };
+```
+
+IFTTT の Webhook は GET リクエストで application/x-www-form-urlencoded 形式でデータを受け付けることができるため、今回はこのようにしています。また、mode を no-cors を CORS に影響されないデータ送信方法なので、そう設定しています。
+
+no-cors 送信は、データを送るだけなら問題なくできるので、今回は使えます。もし、データの受信も含めたやり取りをしたい場合は、前述の通り自前のサーバー側で CORS を許可しましょう。
+
+- fetchのmodeについて - Qiita
+    - https://qiita.com/ryokkkke/items/79f1d338e141d4b7201b
+
 ## メッセージを変更してみましょう
 
 IFTTT Webhook には value1 value2 value3 という 3 つのメッセージを受け付けています。
