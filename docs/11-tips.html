@@ -566,325 +566,64 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="mesh-と連携しよう"><a name="mesh-と連携しよう" class="plugin-anchor" href="#mesh-と連携しよう"><i class="fa fa-link" aria-hidden="true"></i></a>MESH と連携しよう</h1>
-<h2 id="つなぎ方の解説"><a name="つなぎ方の解説" class="plugin-anchor" href="#つなぎ方の解説"><i class="fa fa-link" aria-hidden="true"></i></a>つなぎ方の解説</h2>
-<p>私のほうで、自前の MESH ボタンをつないでみた記事があるので、これを元に一連の流れを解説します。</p>
-<p><img src="https://i.gyazo.com/18c01af30384f682f476a4f0b01e29ef.jpg" alt="18c01af30384f682f476a4f0b01e29ef"></p>
+                                <h2 id="aws-lambda--obniz-連携"><a name="aws-lambda--obniz-連携" class="plugin-anchor" href="#aws-lambda--obniz-連携"><i class="fa fa-link" aria-hidden="true"></i></a>AWS Lambda + obniz 連携</h2>
+<p><img src="https://i.gyazo.com/c5edc95c3551a6796e763a425668a4ff.png" alt="c5edc95c3551a6796e763a425668a4ff"></p>
+<p>AWS Lambda + obniz 連携は公式ドキュメントがあります。</p>
 <ul>
-<li>MESH ボタンを 1.2.5 にアップデートして obniz とつなぐメモ<ul>
-<li><a href="https://www.1ft-seabass.jp/memo/2022/12/06/mesh-version-up-meets-obniz-first-contact/" target="_blank">https://www.1ft-seabass.jp/memo/2022/12/06/mesh-version-up-meets-obniz-first-contact/</a></li>
+<li>AWS Lambda: 1関数で1台のobnizを管理する - obniz Docs<ul>
+<li><a href="https://obniz.com/ja/doc/guides/production/aws-lambda-single" target="_blank">https://obniz.com/ja/doc/guides/production/aws-lambda-single</a></li>
+</ul>
+</li>
+<li>AWS LambdaとAPI Gatewayを使う - obniz Docs<ul>
+<li><a href="https://obniz.com/ja/doc/guides/nodejs/aws-lambda" target="_blank">https://obniz.com/ja/doc/guides/nodejs/aws-lambda</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="動きブロックでデモしてみます"><a name="動きブロックでデモしてみます" class="plugin-anchor" href="#動きブロックでデモしてみます"><i class="fa fa-link" aria-hidden="true"></i></a>動きブロックでデモしてみます</h2>
-<p><img src="https://i.gyazo.com/5e4be58b71d8ee1a298352c8d9b16a64.jpg" alt="5e4be58b71d8ee1a298352c8d9b16a64"></p>
-<p>MESH 動きブロックと obniz を連携してみましょう。</p>
-<p>最近購入した MESH であればバージョンが 1.2.5 になっているので、すぐ使えるはずです。</p>
-<p><img src="https://i.gyazo.com/81e6009bbbab6bf551a69a05e089fa1b.jpg" alt="81e6009bbbab6bf551a69a05e089fa1b"></p>
-<p>このようにスイッチを押して起動します。LED が暗いところからフワッと明るく点灯すると電源オンです。</p>
-<p>電源オンの具体的な LED の光り方や電池残量の確認法など、こまかな MESH の挙動は <a href="https://www.youtube.com/watch?v=G2e2s5kKBC0&amp;list=PLQM9GimvERzs2NZBCkvk33cn4ccKAeEI7&amp;index=6" target="_blank">https://www.youtube.com/watch?v=G2e2s5kKBC0&amp;list=PLQM9GimvERzs2NZBCkvk33cn4ccKAeEI7&amp;index=6</a> こちらの動画を参考にしましょう。</p>
-<p>MESH のパーツライブラリは <a href="https://obniz.com/ja/sdk/parts?q=MESH" target="_blank">https://obniz.com/ja/sdk/parts?q=MESH</a> にあり、MESH 動きブロックは <a href="https://obniz.com/ja/sdk/parts/MESH_100AC/README.md" target="_blank">https://obniz.com/ja/sdk/parts/MESH_100AC/README.md</a> にドキュメントがあります。</p>
-<p>先ほどの記事でも触れましたが MESH のサンプルは、全部のコードが載っているわけではないので、サンプルコードを持って来て obniz クラウド用に書き加えます。</p>
-<p>こちらを以前の内容は、すべて選択して消してから、エディタの内容を上書きします。</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://obniz.io/js/jquery-3.2.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>MESH Move<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-
-      <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
-      <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
-
-      <span class="hljs-comment">// 接続後、MESH と接続</span>
-      obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-        obniz.display.clear();
-        obniz.display.print(<span class="hljs-string">&quot;[MESH Move]&quot;</span>);
-
-        <span class="hljs-keyword">const</span> MESH_100AC = Obniz.getPartsClass(<span class="hljs-string">&apos;MESH_100AC&apos;</span>);
-
-        <span class="hljs-comment">// BLE の初期化待ちコードを加えます</span>
-        <span class="hljs-keyword">await</span> obniz.ble.initWait();
-
-        obniz.ble.scan.onfind = <span class="hljs-keyword">async</span> (peripheral) =&gt; {
-
-          <span class="hljs-keyword">if</span> (!MESH_100AC.isMESHblock(peripheral)) {
-              <span class="hljs-keyword">return</span>;
-          }
-          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;found&apos;</span>);
-
-          <span class="hljs-comment">// Create an instance</span>
-          <span class="hljs-keyword">const</span> moveBlock = <span class="hljs-keyword">new</span> MESH_100AC(peripheral);
-
-          <span class="hljs-comment">// Connect to the Move block</span>
-          <span class="hljs-keyword">await</span> moveBlock.connectWait();
-          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`connected: <span class="hljs-subst">${moveBlock.peripheral.localName}</span>`</span>);
-
-          <span class="hljs-comment">// Tap Event</span>
-          moveBlock.onTapped = <span class="hljs-function">(<span class="hljs-params">accele</span>) =&gt;</span> {
-              <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;tapped! (ax, ay, az) = (&apos;</span> + accele.x + <span class="hljs-string">&apos;, &apos;</span> + accele.y + <span class="hljs-string">&apos;,&apos;</span> + accele.z + <span class="hljs-string">&apos;)&apos;</span>);
-          };
-
-          <span class="hljs-comment">// Shake Event</span>
-          moveBlock.onShaked = <span class="hljs-function">(<span class="hljs-params">accele</span>) =&gt;</span> {
-              <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;shaked! (ax, ay, az) = (&apos;</span> + accele.x + <span class="hljs-string">&apos;, &apos;</span> + accele.y + <span class="hljs-string">&apos;,&apos;</span> + accele.z + <span class="hljs-string">&apos;)&apos;</span>);
-          };
-
-          <span class="hljs-comment">// Flip Event</span>
-          moveBlock.onFlipped = <span class="hljs-function">(<span class="hljs-params">accele</span>) =&gt;</span> {
-              <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;flipped! (ax, ay, az) = (&apos;</span> + accele.x + <span class="hljs-string">&apos;, &apos;</span> + accele.y + <span class="hljs-string">&apos;,&apos;</span> + accele.z + <span class="hljs-string">&apos;)&apos;</span>);
-          };
-
-          <span class="hljs-comment">// Orientation Event</span>
-          moveBlock.onOrientationChanged = <span class="hljs-function">(<span class="hljs-params">orientation, accele</span>) =&gt;</span> {
-              <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;orientation changed! &apos;</span> + orientation + <span class="hljs-string">&apos;, (ax, ay, az) = (&apos;</span> + accele.x + <span class="hljs-string">&apos;, &apos;</span> + accele.y + <span class="hljs-string">&apos;,&apos;</span> + accele.z + <span class="hljs-string">&apos;)&apos;</span>);
-          };
-        };
-
-        <span class="hljs-comment">// スキャンの開始待ちのコードを加えます</span>
-        <span class="hljs-keyword">await</span> obniz.ble.scan.startWait();
-      }
-
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-</code></pre>
-<p>こちらを実行してみると</p>
-<p><img src="https://i.gyazo.com/28aa8290c46c8b039be270adc8fb0a12.png" alt="28aa8290c46c8b039be270adc8fb0a12"></p>
-<p>found と出て MESH が見つかってしばらく待つと接続されます。</p>
-<p><img src="https://i.gyazo.com/34b1468491c13e7a98112b9544c3a972.png" alt="34b1468491c13e7a98112b9544c3a972"></p>
-<p>shaked は振られた時、tapped はトンっと叩かれた時、orientation changed は面が変わった時、flipped はひっくり返したときです。</p>
-<p>こういった動きは、各 MESH タグでスマホアプリからつないだ設定項目で分かります。また、obniz ドキュメントからたどれる MESH の <a href="https://developer.meshprj.com/hc/ja/categories/8286129859737-MESH-%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF-%E6%8A%80%E8%A1%93%E4%BB%95%E6%A7%98" target="_blank">技術仕様書</a> もおすすめです。</p>
-<p><img src="https://i.gyazo.com/569c7be5b3ce86213f43e86c5ba4c2a1.png" alt="569c7be5b3ce86213f43e86c5ba4c2a1"></p>
-<p>たとえば、動きブロックの仕様書はこのようになります。 → <a href="https://developer.meshprj.com/hc/ja/articles/8286418941977-%E5%8B%95%E3%81%8D%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF-MESH-100AC-" target="_blank">https://developer.meshprj.com/hc/ja/articles/8286418941977-%E5%8B%95%E3%81%8D%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF-MESH-100AC-</a></p>
-<h2 id="複数の-mesh-があるときに特定の-mesh-につなげるには"><a name="複数の-mesh-があるときに特定の-mesh-につなげるには" class="plugin-anchor" href="#複数の-mesh-があるときに特定の-mesh-につなげるには"><i class="fa fa-link" aria-hidden="true"></i></a>複数の MESH があるときに特定の MESH につなげるには</h2>
-<p><img src="https://i.gyazo.com/28aa8290c46c8b039be270adc8fb0a12.png" alt="28aa8290c46c8b039be270adc8fb0a12"></p>
-<p>ハッカソンの現場では複数の MESH が飛び交って、いまのコードだと違う動き MESH につながってしまう可能性があります。そういうときは found 後の connected 接続時の peripheral.localName の値で if 文で区別すると良いです。</p>
-<pre><code class="lang-js">          <span class="hljs-comment">// Connect to the Move block</span>
-          <span class="hljs-keyword">await</span> moveBlock.connectWait();
-          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`connected: <span class="hljs-subst">${moveBlock.peripheral.localName}</span>`</span>);
-</code></pre>
-<p>さきほどの、コードだとここです。moveBlock の部分は、各ブロックのサンプルで変わりますので確認してみましょう。</p>
-<p><img src="https://i.gyazo.com/5616b79af74ab07d45a35a4b834e5784.jpg" alt="5616b79af74ab07d45a35a4b834e5784"></p>
-<p>動きブロックの場合 MESH-100AC というブロックの名称に MESH 本体に書いてある SN というシリアルナンバーが付与したものになります。他のブロックでも、そのブロックの名称＋シリアルナンバーで区別できます。わざわざ一度つながなくても、事前に推測できます。</p>
-<p>この写真のように、そのブロックの型番は 2 行目と SN は 4 行目に本体に書かれています。</p>
-<h2 id="動きブロックを振ると-line-notify-を通知してみる"><a name="動きブロックを振ると-line-notify-を通知してみる" class="plugin-anchor" href="#動きブロックを振ると-line-notify-を通知してみる"><i class="fa fa-link" aria-hidden="true"></i></a>動きブロックを振ると LINE Notify を通知してみる</h2>
-<p><img src="https://i.gyazo.com/53f8c51c13b4ba0786cb12e296e6ff4b.png" alt="53f8c51c13b4ba0786cb12e296e6ff4b"></p>
-<p>動きブロックを振ると LINE Notify を通知してみましょう。</p>
-<p>以前の内容は、すべて選択して消してから、エディタの内容をこちらで上書きします。</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://obniz.io/js/jquery-3.2.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>MESH Move<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-
-      <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
-      <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
-      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
-      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
-      <span class="hljs-comment">// 今回使う IFTTT Webhook の Event Name</span>
-      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_EVENT_NAME = <span class="hljs-string">&apos;line_notify&apos;</span>;
-
-      <span class="hljs-comment">// 接続後、MESH と接続</span>
-      obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-        obniz.display.clear();
-        obniz.display.print(<span class="hljs-string">&quot;[MESH Move]&quot;</span>);
-
-        <span class="hljs-keyword">const</span> MESH_100AC = Obniz.getPartsClass(<span class="hljs-string">&apos;MESH_100AC&apos;</span>);
-
-        <span class="hljs-comment">// BLE の初期化待ちコードを加えます</span>
-        <span class="hljs-keyword">await</span> obniz.ble.initWait();
-
-        obniz.ble.scan.onfind = <span class="hljs-keyword">async</span> (peripheral) =&gt; {
-
-          <span class="hljs-keyword">if</span> (!MESH_100AC.isMESHblock(peripheral)) {
-              <span class="hljs-keyword">return</span>;
-          }
-          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;found&apos;</span>);
-          obniz.display.print(<span class="hljs-string">&apos;found&apos;</span>);
-
-          <span class="hljs-comment">// Create an instance</span>
-          <span class="hljs-keyword">const</span> moveBlock = <span class="hljs-keyword">new</span> MESH_100AC(peripheral);
-
-          <span class="hljs-comment">// Connect to the Move block</span>
-          <span class="hljs-keyword">await</span> moveBlock.connectWait();
-          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`connected: <span class="hljs-subst">${moveBlock.peripheral.localName}</span>`</span>);
-          obniz.display.print(<span class="hljs-string">&apos;connected&apos;</span>);
-
-          <span class="hljs-comment">// 振った時だけ LINE Notify に通知</span>
-          moveBlock.onShaked = <span class="hljs-function">(<span class="hljs-params">accele</span>) =&gt;</span> {
-              <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;shaked! (ax, ay, az) = (&apos;</span> + accele.x + <span class="hljs-string">&apos;, &apos;</span> + accele.y + <span class="hljs-string">&apos;,&apos;</span> + accele.z + <span class="hljs-string">&apos;)&apos;</span>);
-              <span class="hljs-comment">// ディスプレイに表示</span>
-              obniz.display.clear();
-              obniz.display.print(<span class="hljs-string">&apos;onShaked&apos;</span>);
-              <span class="hljs-comment">// 通知</span>
-              sendIFTTT(<span class="hljs-string">&apos;MESH 動きタグが振られました！&apos;</span>);
-          };
-        };
-
-        <span class="hljs-comment">// スキャンの開始待ちのコードを加えます</span>
-        <span class="hljs-keyword">await</span> obniz.ble.scan.startWait();
-      }
-
-      <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendIFTTT</span>(<span class="hljs-params">message</span>) </span>{
-        <span class="hljs-comment">// IFTTT Webhook に fetch 関数で送る ////////////////////////////</span>
-
-        <span class="hljs-comment">// メッセージ内容を URLSearchParams で作る</span>
-        <span class="hljs-comment">// 実際のメッセージは message 値</span>
-        <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams({
-            <span class="hljs-attr">value1</span>: message
-        });
-        <span class="hljs-comment">// 送る文字列に変換</span>
-        <span class="hljs-keyword">const</span> paramsString = params.toString();
-        <span class="hljs-comment">// 設定</span>
-        <span class="hljs-keyword">const</span> config = {
-            <span class="hljs-attr">method</span>: <span class="hljs-string">&apos;GET&apos;</span>,
-            <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;no-cors&apos;</span>,
-            <span class="hljs-attr">headers</span>: {
-                <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;application/x-www-form-urlencoded&apos;</span>
-            }
-        };
-        <span class="hljs-comment">// IFTTT Webhook の URL をつくる</span>
-        <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_URL = <span class="hljs-string">`https://maker.ifttt.com/trigger/<span class="hljs-subst">${IFTTT_WEBHOOK_EVENT_NAME}</span>/with/key/<span class="hljs-subst">${IFTTT_WEBHOOK_YOUR_KEY}</span>?<span class="hljs-subst">${paramsString}</span>`</span>;
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;IFTTT_WEBHOOK_URL&quot;</span>);
-        <span class="hljs-built_in">console</span>.log(IFTTT_WEBHOOK_URL);
-        <span class="hljs-comment">// 送信</span>
-        <span class="hljs-keyword">await</span> fetch(IFTTT_WEBHOOK_URL, config);
-
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;OK&quot;</span>)
-
-      }
-
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-</code></pre>
-<p>コピーアンドペーストできたら、</p>
-<pre><code class="lang-js">      <span class="hljs-comment">// 今回使う IFTTT Webhook の自分のキー</span>
-      <span class="hljs-keyword">const</span> IFTTT_WEBHOOK_YOUR_KEY = <span class="hljs-string">&apos;IFTTT_WEBHOOK_YOUR_KEY&apos;</span>;
-</code></pre>
-<p>の &apos;IFTTT_WEBHOOK_YOUR_KEY&apos; シングルクオーテーションの中を IFTTT Webhook のキーに変更します。</p>
-<p><img src="https://i.gyazo.com/9aa65beec0e7194d85c08bdfad60d488.jpg" alt="9aa65beec0e7194d85c08bdfad60d488"></p>
-<p>こちらを実行してみて、ディスプレイが found と connected が出たら MESH と接続できています。</p>
-<p><img src="https://i.gyazo.com/53f8c51c13b4ba0786cb12e296e6ff4b.png" alt="53f8c51c13b4ba0786cb12e296e6ff4b"></p>
-<p>振ってみると LINE Notify にメッセージが送られます。</p>
-<h2 id="余裕があれば、人感センサブロックでデモしてみます"><a name="余裕があれば、人感センサブロックでデモしてみます" class="plugin-anchor" href="#余裕があれば、人感センサブロックでデモしてみます"><i class="fa fa-link" aria-hidden="true"></i></a>余裕があれば、人感センサブロックでデモしてみます</h2>
-<p><img width="1433" alt="2022-12-26 10.43.58.jpg (171.6 kB)" src="https://img.esa.io/uploads/production/attachments/3062/2022/12/26/8131/13dd4310-6df7-42f7-a2bc-6d7b92c27fd5.jpg"></p>
-<p>人感センサブロックも動かしてみます。</p>
-<p>人感センサのドキュメントは <a href="https://obniz.com/ja/sdk/parts/MESH_100MD/README.md" target="_blank">https://obniz.com/ja/sdk/parts/MESH_100MD/README.md</a> です。ALWAY モードのサンプルは、すごくチェック頻度が高いので、通常の getSensorDataWait のセンサー取得を使って obniz.onloop で定期実行します。</p>
-<p>以前の内容は、すべて選択して消してから、エディタの内容をこちらで上書きします。</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://obniz.io/js/jquery-3.2.1.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/obniz@3.24.0/obniz.js&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>MESH Move<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-
-      <span class="hljs-comment">// 今回の obniz を指示するための設定</span>
-      <span class="hljs-keyword">const</span> obniz = <span class="hljs-keyword">new</span> Obniz(<span class="hljs-string">&quot;OBNIZ_ID_HERE&quot;</span>);
-
-      <span class="hljs-comment">// 接続後、MESH と接続</span>
-      obniz.onconnect = <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-        obniz.display.clear();
-        obniz.display.print(<span class="hljs-string">&quot;[MESH Motion]&quot;</span>);
-
-        <span class="hljs-keyword">const</span> MESH_100MD = Obniz.getPartsClass(<span class="hljs-string">&apos;MESH_100MD&apos;</span>);
-
-        <span class="hljs-comment">// BLE の初期化待ちコードを加えます</span>
-        <span class="hljs-keyword">await</span> obniz.ble.initWait();
-
-        <span class="hljs-comment">// サンプルコード</span>
-        obniz.ble.scan.onfind = <span class="hljs-keyword">async</span> (peripheral) =&gt; {
-          <span class="hljs-keyword">if</span> (!MESH_100MD.isMESHblock(peripheral)) {
-              <span class="hljs-keyword">return</span>;
-          }
-          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;found&apos;</span>);
-          obniz.display.print(<span class="hljs-string">&apos;found&apos;</span>);
-
-          <span class="hljs-comment">// Create an instance</span>
-          <span class="hljs-keyword">const</span> motionBlock = <span class="hljs-keyword">new</span> MESH_100MD(peripheral);
-
-          <span class="hljs-comment">// Connect to the Motion block</span>
-          <span class="hljs-keyword">await</span> motionBlock.connectWait();
-          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`connected: <span class="hljs-subst">${motionBlock.peripheral.localName}</span>`</span>);
-          obniz.display.print(<span class="hljs-string">&apos;connected&apos;</span>);
-
-          obniz.onloop = <span class="hljs-keyword">async</span> () =&gt; {
-            <span class="hljs-comment">// Get sensor data</span>
-            <span class="hljs-keyword">const</span> motionState = <span class="hljs-keyword">await</span> motionBlock.getSensorDataWait();
-            <span class="hljs-keyword">switch</span> (motionState) {
-                <span class="hljs-keyword">case</span> MESH_100MD.MotionState.DETECTED: {
-                  <span class="hljs-comment">// 認識した時だけ</span>
-                    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;人感センサが認識しました！&apos;</span>);
-                    <span class="hljs-keyword">break</span>;
-                }
-                <span class="hljs-keyword">case</span> MESH_100MD.MotionState.NOT_DETECTED: {
-                    <span class="hljs-comment">// console.log(&apos;Not Detected.&apos;);</span>
-                    <span class="hljs-keyword">break</span>;
-                }
-                <span class="hljs-attr">default</span>: {
-                    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Starting up...&apos;</span>);
-                    <span class="hljs-keyword">break</span>;
-                }
-            }
-            <span class="hljs-comment">// 1秒待って定期実行</span>
-            <span class="hljs-keyword">await</span> obniz.wait(<span class="hljs-number">1000</span>);
-          }
-
-        };
-
-        <span class="hljs-comment">// スキャンの開始待ちのコードを加えます</span>
-        <span class="hljs-keyword">await</span> obniz.ble.scan.startWait();
-      }
-
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-</code></pre>
-<p>コピーアンドペーストできたら、MESH を起動してからこちらを実行してみます。</p>
-<p><img src="https://i.gyazo.com/10b756a549c7db3f8f0018ed4366b4e0.jpg" alt="10b756a549c7db3f8f0018ed4366b4e0"></p>
-<p>ディスプレイが found と connected が出たら MESH と接続できています。</p>
-<p><img src="https://i.gyazo.com/ef7b8bb6ac0e3b4ad6c3dd38c528c62d.jpg" alt="ef7b8bb6ac0e3b4ad6c3dd38c528c62d"></p>
-<p>センサ部分に手をかざしてみましょう。</p>
-<p><img src="https://i.gyazo.com/3cf7050444e12b09c9952ae05d700e45.png" alt="3cf7050444e12b09c9952ae05d700e45"></p>
-<p>コンソールで「人感センサが認識しました！」とログが出てきます。</p>
-<h2 id="uncaught-obnizblehcistateerror-connection-failed-to-be-established--synchronization-timeout"><a name="uncaught-obnizblehcistateerror-connection-failed-to-be-established--synchronization-timeout" class="plugin-anchor" href="#uncaught-obnizblehcistateerror-connection-failed-to-be-established--synchronization-timeout"><i class="fa fa-link" aria-hidden="true"></i></a>Uncaught ObnizBleHciStateError: Connection Failed to be Established / Synchronization Timeout</h2>
-<p>これが出たら、一度 obniz 実行を止めてつなぎなおすとうまくいきます。</p>
-<h2 id="uncaught-meshjsblockversionerror-please-update-the-block-software-to-version-125-or-higher-current-block-software-version-is-115-"><a name="uncaught-meshjsblockversionerror-please-update-the-block-software-to-version-125-or-higher-current-block-software-version-is-115-" class="plugin-anchor" href="#uncaught-meshjsblockversionerror-please-update-the-block-software-to-version-125-or-higher-current-block-software-version-is-115-"><i class="fa fa-link" aria-hidden="true"></i></a>Uncaught MESHJsBlockVersionError: Please UPDATE the block software to version 1.2.5 or higher. (Current block software version is 1.1.5 .)</h2>
-<p>このようなエラーが出てきたら、MESH のバージョンアップが必要です。<a href="https://www.1ft-seabass.jp/memo/2022/12/06/mesh-version-up-meets-obniz-first-contact/" target="_blank">こちらの記事</a> を参考にアップデートしましょう。</p>
-<h2 id="ifttt-と-mesh-アプリの連携もいけます"><a name="ifttt-と-mesh-アプリの連携もいけます" class="plugin-anchor" href="#ifttt-と-mesh-アプリの連携もいけます"><i class="fa fa-link" aria-hidden="true"></i></a>IFTTT と MESH アプリの連携もいけます</h2>
-<p>実は IFTTT と MESH アプリの連携もできます。</p>
-<p><img width="1253" alt="2022-12-24 16.18.34.jpg (97.3 kB)" src="https://img.esa.io/uploads/production/attachments/3062/2022/12/24/8131/a140adab-a826-46ad-9359-70371719e3af.jpg"></p>
+<p>注意点としては、ブラウザの JavaScript でなく Node.js で組むことになるので、かなり似ているコードで書けますが、違いはあるのでそのあたりを気をつけながら実装していくことになります。</p>
 <ul>
-<li>IFTTTを使ってWEBサービスと連携しよう<ul>
-<li><a href="https://www.get.meshprj.com/iftttapplet" target="_blank">https://www.get.meshprj.com/iftttapplet</a></li>
+<li>Node.js x obniz - obniz Docs<ul>
+<li><a href="https://obniz.com/ja/doc/guides/nodejs/" target="_blank">https://obniz.com/ja/doc/guides/nodejs/</a></li>
 </ul>
 </li>
 </ul>
-<p><img width="740" alt="2022-12-24 16.19.17.jpg (86.1 kB)" src="https://img.esa.io/uploads/production/attachments/3062/2022/12/24/8131/52a9224c-a677-4046-9571-846d4406b80a.jpg"></p>
+<h2 id="obniz-とビーコンの連携"><a name="obniz-とビーコンの連携" class="plugin-anchor" href="#obniz-とビーコンの連携"><i class="fa fa-link" aria-hidden="true"></i></a>obniz とビーコンの連携</h2>
+<p><img src="https://i.gyazo.com/f546dc0be1633a3545d74cbfca861c6f.png" alt="f546dc0be1633a3545d74cbfca861c6f"></p>
+<p>私の方が、いろいろ調べてみました。ぜひご参考ください。</p>
 <ul>
-<li>IFTTTアプレットの使いかた<ul>
-<li><a href="https://support.meshprj.com/hc/ja/articles/115003497128" target="_blank">https://support.meshprj.com/hc/ja/articles/115003497128</a></li>
+<li>MAMORIO を BLE ビーコンとして obniz の BLE で検知するメモ – 1ft-seabass.jp.MEMO<ul>
+<li><a href="https://www.1ft-seabass.jp/memo/2022/12/20/obniz-check-mamorio-ble-beacon/" target="_blank">https://www.1ft-seabass.jp/memo/2022/12/20/obniz-check-mamorio-ble-beacon/</a></li>
+</ul>
+</li>
+<li>obniz で BLE ビーコンを試すとき MAMORIO RE が使いやすかったメモ – 1ft-seabass.jp.MEMO<ul>
+<li><a href="https://www.1ft-seabass.jp/memo/2022/12/23/obniz-mamorio-re-very-nice-approach/" target="_blank">https://www.1ft-seabass.jp/memo/2022/12/23/obniz-mamorio-re-very-nice-approach/</a></li>
 </ul>
 </li>
 </ul>
-<p>おもしろいですよね。ただ、MESH アプリが直感的とはいえアプリの使い方を学ぶ必要があるのと、スマートフォンでアプリを起動し続ける運用をします。ちょっと MESH と アプリの接続で苦労することもあるかもしれず、使いこなすには若干の慣れが必要があります。</p>
+<h2 id="ハッカソン前に一通り試そう"><a name="ハッカソン前に一通り試そう" class="plugin-anchor" href="#ハッカソン前に一通り試そう"><i class="fa fa-link" aria-hidden="true"></i></a>ハッカソン前に一通り試そう</h2>
+<p><img src="https://i.gyazo.com/6fab899c0415c0a1bcb2444bd262664e.png" alt="6fab899c0415c0a1bcb2444bd262664e"></p>
+<p>obniz + MESH 含めて、チーム内の作りたいものに合わせて実装していきますね。</p>
+<p>その時に大切なのは「ハッカソン前に一通り試すこと」です。</p>
+<p>ハッカソン中に試行錯誤をしながら作り切るのは至難の業です。ですので、事前に Slack でのテクニカルメンターへの質問も駆使しつつ事前に自分たちのやりたい仕組みを試しておきましょう。理想を言えば、一つ一つの検証だけでなくだいたいの仕組みをつなげておくことです。</p>
+<p>もちろん obniz + MESH まわりは、私の方が全力でサポートします！がんばりましょー。</p>
+<h2 id="mesh-や-obniz-は自分のモノとわかるようにラベルを貼りましょう"><a name="mesh-や-obniz-は自分のモノとわかるようにラベルを貼りましょう" class="plugin-anchor" href="#mesh-や-obniz-は自分のモノとわかるようにラベルを貼りましょう"><i class="fa fa-link" aria-hidden="true"></i></a>MESH や obniz は自分のモノとわかるようにラベルを貼りましょう</h2>
+<p><img src="https://i.gyazo.com/894de1e36ec3b519d77a3ad986339cc7.jpg" alt="894de1e36ec3b519d77a3ad986339cc7"></p>
+<p>とくに MESH は、同じ会場でみなさんが同時に使うケースがあって、他チームと混ざっちゃう可能性があります。そうなると、タイムロスにつながりかねないので、このようにチーム名でも担当する人の名前でもラベルを貼るのがおススメです。</p>
+<p>私は、よく白いマスキングテープのようなものにボールペンで書いて貼ってます。あとでも剥がしやすいです。</p>
+<p>obniz は電源をつければ ID が書いてあるので、結構分かりますが、それでも全く同じ機材なだけに混乱しやすいので、ラベルを付けるのもいいでしょう。</p>
+<h2 id="obniz-は-iot-機器対応モバイルバッテリーで自由度が増します"><a name="obniz-は-iot-機器対応モバイルバッテリーで自由度が増します" class="plugin-anchor" href="#obniz-は-iot-機器対応モバイルバッテリーで自由度が増します"><i class="fa fa-link" aria-hidden="true"></i></a>obniz は IoT 機器対応モバイルバッテリーで自由度が増します</h2>
+<p><img src="https://i.gyazo.com/70048bcef5395474ed3b08f88273b447.jpg" alt="70048bcef5395474ed3b08f88273b447"></p>
+<p>obniz は開発時に PC から給電しているので、ついつい忘れがちですが、IoT 機器対応モバイルバッテリーで給電することで、簡単に携帯できることが可能です。ハッカソン時の設置の自由さが増します！</p>
+<p>おススメなのは、以下のバッテリー。obniz は結構省電力なので、よくあるスマホ対応モバイルバッテリーだと、勝手に1分くらいで電源供給がされなくなるオート OFF 機能があって困ります。このモバイルバッテリーはスイッチで明確に ON / OFF できるので、給電も止まらず、しっかり動作させることができます。</p>
+<ul>
+<li>【白色】IoT機器対応モバイルバッテリー cheero Canvas 3200mAh — スイッチサイエンス<ul>
+<li><a href="https://www.switch-science.com/products/2618" target="_blank">https://www.switch-science.com/products/2618</a></li>
+</ul>
+</li>
+<li>【黒色】IoT機器対応モバイルバッテリー cheero Canvas 3200mAh — スイッチサイエンス<ul>
+<li><a href="https://www.switch-science.com/products/3167" target="_blank">https://www.switch-science.com/products/3167</a></li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -928,7 +667,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"いろいろ TIPS","level":"1.14","depth":1,"next":{"title":"質疑応答＆ディスカッション","level":"1.15","depth":1,"path":"12-discussion.md","ref":"12-discussion.md","articles":[]},"previous":{"title":"MESH と連携しよう","level":"1.13","depth":1,"path":"10-mesh.md","ref":"10-mesh.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"11-tips.md","mtime":"2022-12-26T01:55:19.876Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-26T05:48:26.300Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"いろいろ TIPS","level":"1.14","depth":1,"next":{"title":"質疑応答＆ディスカッション","level":"1.15","depth":1,"path":"12-discussion.md","ref":"12-discussion.md","articles":[]},"previous":{"title":"MESH と連携しよう","level":"1.13","depth":1,"path":"10-mesh.md","ref":"10-mesh.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","hide-published-with","copy-code-button","intopic-toc","back-to-top-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"intopic-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","mode":"nested","maxDepth":6,"isCollapsed":true,"isScrollspyActive":true,"visible":true,"label":"In this article"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"202212 obniz ハンズオン資料","language":"ja","gitbook":"*","description":"2022/12 に行われる obniz ハンズオン資料です"},"file":{"path":"11-tips.md","mtime":"2022-12-26T06:23:39.252Z","type":"markdown"},"gitbook":{"version":"3.7.4","time":"2022-12-26T06:23:46.881Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
