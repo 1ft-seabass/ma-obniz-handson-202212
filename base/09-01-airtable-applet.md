@@ -60,14 +60,17 @@ Create a new record のページに移動します。Airtable account が自分�
 
 ![9d23d185fac79bd6bfdb74b898cc0617](https://i.gyazo.com/9d23d185fac79bd6bfdb74b898cc0617.png)
 
-- Which Base ?
-    - `Sample`
-- Table
-    - `Table 1`
-- Record content
-```
-::airtable::Name::{{Value1}}
-```
+
+・Which Base ?  
+`Sample`
+
+・Table  
+`Table 1`
+
+・Record content  
+`::airtable::Name::{{Value1}}`
+
+
 
 と設定して、設定できたら Create action をクリックします。
 
